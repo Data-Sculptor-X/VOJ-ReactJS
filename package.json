@@ -42,7 +42,7 @@
     "sweetalert2": "11.10.1"
   },
   "scripts": {
-    "start": "react-scripts start --port 4000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
