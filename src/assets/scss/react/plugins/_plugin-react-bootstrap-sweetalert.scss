@@ -1,0 +1,10 @@
+@include media-breakpoint-up(sm) {
+  .sweet-alert{
+    margin-top: 100px !important;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .sweet-alert{
+    margin-top: 50px !important;
+  }
+}

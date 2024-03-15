@@ -1,0 +1,74 @@
+.react-bootstrap-table{
+  .table{
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid $gray-200;
+  }
+  th{
+    color: $gray-600;
+    background-color: $gray-100;
+    &.sortable{
+      position: relative;
+    }
+  }
+  .order-4,.caret-4-asc,.caret-4-desc{
+    &:after{
+      right: 0.5em;
+      content: "\2193";
+    }
+    &:before{
+      right: 1em;
+      content: "\2191";
+    }
+    &:after,&:before{
+      position: absolute;
+      bottom: 1.1em;
+      display: block;
+      opacity: 0.3;
+    }
+  }
+  .caret-4-asc:before{
+    opacity: 1;
+  }
+  .caret-4-desc:after{
+    opacity: 1;
+  }
+}
+.react-bootstrap-table-pagination{
+  .dataTables_length{
+    display: inline-block;
+    label {
+      font-weight: normal;
+      text-align: left;
+      white-space: nowrap;
+      display: inline-block;
+      margin-bottom: .5rem;
+    }
+    select {
+      width: auto;
+      display: inline-block;
+      &.form-control-sm{
+        height: calc(1.8125rem + 6px);
+      }
+    }
+  }
+  .dataTables_length,.react-bootstrap-table-pagination-total{
+    font-size: .875rem;
+  }
+  .react-bootstrap-table-pagination-list{
+    .pagination {
+      justify-content: flex-end;
+      padding-right: 1.5rem;
+    }
+  }
+}
+.dataTables_filter{
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+  float: left;
+  input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+  }
+}
