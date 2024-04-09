@@ -1,0 +1,13 @@
+.bootstrap-tagsinput .tag a{
+  position: absolute;
+  top: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+  transform: translate(0, -50%);
+  color: #fff;
+
+  &::after {
+    font-size: 16px;
+    content: "×";
+  }
+}

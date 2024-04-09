@@ -1,0 +1,63 @@
+.fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
+  float: right;
+}
+.fc-dayGrid-view .fc-body .fc-row {
+  min-height: 4em;
+}
+.fc {
+  &.fc-theme-standard td, &.fc-theme-standard th, &.fc-theme-standard .fc-scrollgrid {
+    border-color: lighten($table-border-color,2%) !important;
+  }
+  .fc-h-event {
+    border: none;
+  }
+  .fc-col-header-cell.fc-day  {
+    text-align: left;
+    padding: .75rem 1rem;
+    .fc-col-header-cell-cushion {
+      padding: 0;
+      color: $gray-600;
+    }
+  }
+  .fc-day .fc-daygrid-day-top {
+    flex-direction: row;
+    .fc-daygrid-day-number {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      color: lighten($body-color,10%);
+      padding: .5rem 1rem;
+    }
+  }
+  .fc-daygrid-day.fc-day-today{
+    background-color: inherit !important;
+    .fc-daygrid-day-top {
+      .fc-daygrid-day-number {
+        color: $orange;
+      }
+    }
+  }
+  .fc-event {
+    margin: 2px 9px 1px !important;
+  }
+  .fc-event-main {
+      padding: 0;
+      font-size: $font-size-xs;
+      border-radius: $border-radius-sm;
+      border: 0;
+
+      .fc-event-title {
+          padding: .4rem .5rem;
+          display: block;
+          color: $white;
+          @include text-truncate();
+          font-weight: $font-weight-bold;
+      }
+
+      .fc-time {
+          float: left;
+          background: rgba($black,0.2);
+          padding: 2px 6px;
+          margin: 0 0 0 -1px;
+      }
+  }
+}
