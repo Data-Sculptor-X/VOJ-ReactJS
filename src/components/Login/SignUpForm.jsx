@@ -1,32 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userRegister } from "store/actions/General/authActions";
+
 function SignUpForm() {
-  const [state, setState] = React.useState({
+  const dispatch = useDispatch();
+  const [state, setState] = useState({
     name: "",
     email: "",
     password: "",
   });
+
   const handleChange = (evt) => {
-    const value = evt.target.value;
+    const { name, value } = evt.target;
     setState({
       ...state,
-      [evt.target.name]: value,
+      [name]: value,
     });
   };
 
   const handleOnSubmit = (evt) => {
     evt.preventDefault();
-
+  
     const { name, email, password } = state;
-    alert(
-      `You have signed up with name: ${name} email: ${email} and password: ${password}`
-    );
 
-    for (const key in state) {
-      setState({
-        ...state,
-        [key]: "",
-      });
-    }
+    
+    dispatch(userRegister({ name, email, password }));
+  
+    
+    setState({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -43,7 +48,7 @@ function SignUpForm() {
       <form onSubmit={handleOnSubmit} className="loginform  my-4">
         <h1>Sign Up page</h1>
         <input
-          type="name"
+          type="text" // Changed type to "text"
           name="name"
           value={state.name}
           onChange={handleChange}
@@ -67,11 +72,11 @@ function SignUpForm() {
           placeholder="Enter your Password"
         />
         <div className="d-flex justify-content-end w-100">
-          <button className="loginButton">Sign Up</button>
+          <button type="submit" className="loginButton">Sign Up</button> {/* Added type="submit" */}
         </div>
       </form>
       <div className=" text-muted d-flex justify-content-center my-3">
-        Copyright © {new Date().getFullYear()} Voice of
+        Copyright © {new Date().getFullYear()} Voice of Justice
       </div>
     </div>
   );

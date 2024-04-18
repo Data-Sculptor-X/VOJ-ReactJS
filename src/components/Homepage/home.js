@@ -1,127 +1,132 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.5
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// react library for routing
-import { useLocation, Route, Routes, Navigate } from "react-router-dom";
-// core components
-
-import Sidebar from "components/Sidebar/Sidebar.js";
-// import routes from "routes.js";
-import { routers } from "routers.js";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { generatePrompt } from "store/actions/General/authActions"; // Import API function
+import { routers } from "routers";
+import classnames from "classnames";
 
-const ChatPage = () => {
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
+const ChatPage = ({ access_token }) => {
   const [inputText, setInputText] = useState("");
-
-  const chatStyle = {
-    fontFamily: "Alice, serif",
-    fontSize: "16px",
-    color: "#333",
-    lineHeight: "1.5",
-    width: "calc(100% - 260px)",
-    margin: "0 auto",
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    minHeight: "100vh",
-    position: "relative"
-  };
+  const [messages, setMessages] = useState([]);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
 
-  const handleInputSubmit = () => {
-    console.log("Processing input:", inputText);
-    setInputText("");
-  };
+  const handleInputSubmit = async () => {
+    try {
+      const response = await generatePrompt(inputText, access_token);
+      console.log(response)
+      const newMessages = [
+        ...messages,
+        { text: inputText, sender: "user" },
+        { text: JSON.stringify(response), sender: "AI Lawyer" }, // Convert object to string
+      ];
+      setMessages(newMessages);
+      setInputText("");
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };  
+
 
   return (
-    <div style={{ backgroundColor: "ghostwhite", minHeight: "100vh" }}>
-      <div style={chatStyle}>
-        <div style={{ marginBottom: "20px" }}>
-          <div style={{ textAlign: "left", marginBottom: "10px" }}>
-            <strong>User:</strong>
-          </div>
-          <div style={{ backgroundColor: "#f2f2f2", padding: "10px", borderRadius: "10px" }}>
-            Hello, how can I help you today?
-          </div>
-        </div>
-        <div style={{ marginBottom: "20px", textAlign: "right" }}>
-          <div style={{ textAlign: "right", marginBottom: "10px" }}>
-            <strong>AI Lawyer:</strong>
-          </div>
-          <div style={{ backgroundColor: "#e6f2ff", padding: "10px", borderRadius: "10px" }}>
-            Hi there! I'm here to assist you with any questions you may have.
-          </div>
-        </div>
-      </div>
-      <div style={{ position: "relative"}}>
-        <div style={{ position: "relative", width: "75%", alignSelf: "center", alignItems:"center" }}>
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={inputText}
-            onChange={handleInputChange}
+    <div style={{ margin:"0px, 40px" ,backgroundColor: "ghostwhite", minHeight: "100vh"}}>
+      <div style={{}}>
+        {messages.map((message, index) => (
+          <div
+            key={index}
             style={{
-              width: "100%",
-              padding: "15px",
-              borderRadius: "25px",
-              border: "1px solid #ccc",
               marginBottom: "20px",
-              fontSize: "16px"
+              textAlign: message.sender === "user" ? "left" : "right",
             }}
-          />
-          <FontAwesomeIcon
-            icon={faArrowUp}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "10px",
-              transform: "translateY(-100%)",
-              cursor: "pointer",
-              fontSize: "20px",
-              color: "#666",
-            }}
-            onClick={handleInputSubmit}
-          />
-        </div>
+          >
+            <div
+              style={{
+                textAlign: message.sender === "user" ? "left" : "right",
+                marginBottom: "10px",
+              }}
+            >
+              <strong>{message.sender}:</strong>
+            </div>
+            <div
+              style={{
+                backgroundColor:
+                  message.sender === "user" ? "#f2f2f2" : "#e6f2ff",
+                padding: "10px",
+                borderRadius: "10px",
+              }}
+            >
+              {message.text}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ position: "relative" }}>
+        
+        <FormGroup>
+          <InputGroup
+            className={classnames("input-group-merge", {
+              // focused: location,
+            })}
+          >
+            <Input
+              // placeholder="Location"
+              type="text"
+              placeholder="Type your message..."
+              value={inputText}
+              onChange={handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleInputSubmit();
+                }
+              }}
+              style={{ maxWidth: "750px" }}
+              // onFocus={(e) => setlocation(true)}
+              // onBlur={(e) => setlocation(false)}
+            />
+            <InputGroupAddon addonType="append">
+              <InputGroupText>
+                <i onClick={handleInputSubmit} className="ni ni-send" />
+              </InputGroupText>
+            </InputGroupAddon>
+          </InputGroup>
+        </FormGroup>
       </div>
     </div>
   );
 };
 
-
-
-
-
 function Homepage() {
-  const [sidenavOpen, setSidenavOpen] = React.useState(true);
+  const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = React.useRef(null);
-  React.useEffect(() => {
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
   }, [location]);
+
   const routes = routers["template"];
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -164,9 +169,8 @@ function Homepage() {
 
   return (
     <>
-
       <div className="main-content" ref={mainContentRef}>
-        <ChatPage/>
+        <ChatPage access_token={sessionStorage.access_token} />
       </div>
       {sidenavOpen ? (
         <div className="backdrop d-xl-none" onClick={toggleSidenav} />

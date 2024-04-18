@@ -1,81 +1,58 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.5
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React,{useEffect} from "react";
-// react library for routing
+import React, { useEffect, useState } from "react";
 import { useLocation, Route, Routes, Navigate } from "react-router-dom";
-// core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Homepage from "components/Homepage/home";
-
-// import routes from "routes.js";
+import { fetchAllChats } from "store/actions/General/authActions";
 import { routers } from "routers.js";
 
+export function fetchSectionData(setSectionData) {
+  return async () => {
+    try {
+      const data = await fetchAllChats();
+      if (data && data.length > 0) {
+        const truncatedData = data.slice(0, 5); // Limit to recent 5 sections
+        const newSectionData = truncatedData.map((item) => ({
+          SectionID: item.SectionID,
+          SectionName: item.SectionName,
+          path: `/${item.SectionID}`,
+          component: <Homepage />,
+          layout: "/voj",
+        }));
+        setSectionData(newSectionData);
+        console.log(newSectionData);
+      }
+    } catch (error) {
+      console.error("Error fetching section data:", error);
+    }
+  };
+}
+
 function MasterAdmin() {
-  const [sidenavOpen, setSidenavOpen] = React.useState(true);
+  const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = React.useRef(null);
-  React.useEffect(() => {
+  const [routes, setRoutes] = useState(routers["VOJ"]);
+  const [sectionData, setSectionData] = useState([]);
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
+
+    fetchAllChats();
   }, [location]);
-  const [routes, setRoutes] = React.useState(routers["VOJ"]);
 
-  const sectionData = [
-    {
-      sectionID: "DONMASSPANRAN",
-      name: "DON MASS KAMIKIRA"
-    },
-    {
-      sectionID: "DONMASSPANRAN2",
-      name: "DON GETHU KAMIKIRA"
+  useEffect(() => {
+    if (sectionData && sectionData.length > 0) {
+      const data = routers["VOJ"];
+      data[0].views = sectionData;
+      setRoutes(data);
+    } else {
+      setRoutes(routers["VOJ"]);
     }
-  ].map((item, index) => ({
-    path: `/${item.sectionID}`,
-    name: item.name,
-    // miniName:`/${item.sectionID}`,
-    component: <Homepage />,
-    layout: "/voj"
-  }));
-  
-  // console.log(sectionData);
-  
-//       {
-//         path: "/attendanceDashboard",
-//         name: "Dashboard",
-//         miniName: "AD",
-//         component: <Dashboard />,
-//         layout: "/MasterAdmin",
-//       },
-
-React.useEffect(()=>{
-  if(sectionData){
-    const data =routers["VOJ"]
-    data[0].views=sectionData
-    setRoutes(data)
-
-  }
-  else{
-    setRoutes(routers["VOJ"])
-  }
-  
-},[routers,sectionData])
+  }, [sectionData]);
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -84,7 +61,6 @@ React.useEffect(()=>{
       }
       if (prop.layout === "/voj") {
         return (
-
           <Route path={prop.path} element={prop.component} key={key} exact />
         );
       } else {
@@ -92,6 +68,7 @@ React.useEffect(()=>{
       }
     });
   };
+
   const getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
@@ -100,7 +77,7 @@ React.useEffect(()=>{
     }
     return "Brand";
   };
-  // toggles collapse between mini sidenav and normal
+
   const toggleSidenav = (e) => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
@@ -111,13 +88,14 @@ React.useEffect(()=>{
     }
     setSidenavOpen(!sidenavOpen);
   };
+
   const getNavbarTheme = () => {
     return location.pathname.indexOf("admin/alternative-dashboard") === -1
       ? "dark"
       : "light";
   };
 
-  return (routes ?
+  return routes ? (
     <>
       <Sidebar
         routes={routes}
@@ -148,8 +126,8 @@ React.useEffect(()=>{
       {sidenavOpen ? (
         <div className="backdrop d-xl-none" onClick={toggleSidenav} />
       ) : null}
-    </>:null
-  );
+    </>
+  ) : null;
 }
 
 export default MasterAdmin;

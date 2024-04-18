@@ -2,8 +2,8 @@ import axios from "axios";
 
 function setupAuthorizationInterceptorLocal(instance) {
   instance.interceptors.request.use(function (config) {
-    const token = localStorage.access_token || sessionStorage.access_token;
-    config.headers.Authorization = token ? `Bearer ${token}` : "";
+    const token = sessionStorage.getItem('access_token');
+    config.headers.Authorization = token ? `JWT ${token}` : "";
     return config;
   });
 }

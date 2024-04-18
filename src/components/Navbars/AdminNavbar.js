@@ -20,6 +20,8 @@ import classnames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // reactstrap components
+import { useNavigate } from "react-router-dom";
+
 import {
   Collapse,
   DropdownMenu,
@@ -46,6 +48,8 @@ import {
 
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   // function that on mobile devices makes the search open
+  const navigate = useNavigate()
+  
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
     setTimeout(function () {
@@ -440,12 +444,16 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="ni ni-user-run" />
-                    <span>Logout</span>
-                  </DropdownItem>
+                  href="#pablo"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/login");
+                  }}
+                >
+                  <i className="ni ni-user-run" />
+                  <span>Logout</span>
+                </DropdownItem>
+
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -458,7 +466,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
 
 AdminNavbar.defaultProps = {
   toggleSidenav: () => {},
-  sidenavOpen: false,
+  sidenavOpen: true,
   theme: "dark",
 };
 AdminNavbar.propTypes = {

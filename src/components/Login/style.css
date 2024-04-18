@@ -206,3 +206,33 @@
 .signup-right:hover {
   background-color: darkblue; /* Darker color on hover */
 }
+
+
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid red;
+  color: black;
+  z-index: 3;
+}
+
+
+.googleButton:hover {
+  background-color: #e7f1ff;
+}
+
+.googleButton svg {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}

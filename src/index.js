@@ -15,8 +15,10 @@ import LoginApp from "components/Login/LoginApp";
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
 import IndexView from "views/Index.js";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import MasterAdmin from "layouts/MasterAdmin";
 import Homepage from "components/Homepage/home"; // Fix the import statement
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,10 +26,15 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/admin/*" element={<AdminLayout />} /> */}
+        <Route path="/admin/*" element={<AdminLayout />} />
         {/* <Route path="/auth/*" element={<AuthLayout />} /> */}
         <Route path="/voj/*" element={<MasterAdmin />} />
-        <Route path="/login" element={<LoginApp />} />
+        {/* <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+                                        <LoginApp />
+                                      </GoogleOAuthProvider>}/> */}
+        <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+                                        <LoginApp />
+                                      </GoogleOAuthProvider>}/>
         {/* <Route path="/home" element={<Homepage />} />  */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

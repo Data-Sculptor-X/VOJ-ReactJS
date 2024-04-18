@@ -26,7 +26,7 @@ function Sidebar({
   rtlActive,
   auth,
 }) {
-  console.log(auth);
+  
   const [state, setState] = React.useState({});
   const location = useLocation();
   React.useEffect(() => {
