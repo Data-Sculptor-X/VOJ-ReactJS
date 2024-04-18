@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { donHttps } from "config";
 
 export const userLogin = (formBody, navigate) => async (dispatch) => {
@@ -63,3 +64,22 @@ export const generatePrompt = async (prompt) => {
     console.log(data.generated_text)
     return data.generated_text;
 };
+=======
+// reducers.js
+const initialState = {
+  count: 0,
+};
+
+const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return { ...state, count: state.count + 1 };
+    case "DECREMENT":
+      return { ...state, count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+
+export default authReducer;
+>>>>>>> origin/main

@@ -80,7 +80,11 @@
 
 .sign-in-containers {
   background-color: #ffffff;
+<<<<<<< HEAD
   height: 100%;
+=======
+
+>>>>>>> origin/main
   left: 0;
   width: 50%;
   z-index: 2;
@@ -188,6 +192,7 @@
 .containers.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
+<<<<<<< HEAD
 
 .signin-right,
 .signup-right {
@@ -236,3 +241,5 @@
   width: 20px;
   height: 20px;
 }
+=======
+>>>>>>> origin/main

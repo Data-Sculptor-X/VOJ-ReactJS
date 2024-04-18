@@ -21,6 +21,10 @@ import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 // import routes from "routes.js";
 import { routers } from "routers.js";
 
@@ -85,7 +89,10 @@ function Admin() {
           imgAlt: "...",
         }}
       />
+<<<<<<< HEAD
       
+=======
+>>>>>>> origin/main
       <div className="main-content" ref={mainContentRef}>
         <AdminNavbar
           theme={getNavbarTheme()}

@@ -1,5 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 // react library for routing
 import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library that concatenates classes
@@ -26,7 +29,11 @@ function Sidebar({
   rtlActive,
   auth,
 }) {
+<<<<<<< HEAD
   
+=======
+  console.log(auth);
+>>>>>>> origin/main
   const [state, setState] = React.useState({});
   const location = useLocation();
   React.useEffect(() => {

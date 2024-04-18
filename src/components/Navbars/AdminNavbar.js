@@ -20,8 +20,11 @@ import classnames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // reactstrap components
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 
+=======
+>>>>>>> origin/main
 import {
   Collapse,
   DropdownMenu,
@@ -48,8 +51,11 @@ import {
 
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   // function that on mobile devices makes the search open
+<<<<<<< HEAD
   const navigate = useNavigate()
   
+=======
+>>>>>>> origin/main
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
     setTimeout(function () {
@@ -444,6 +450,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem
+<<<<<<< HEAD
                   href="#pablo"
                   onClick={(e) => {
                     e.preventDefault();
@@ -454,6 +461,14 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <span>Logout</span>
                 </DropdownItem>
 
+=======
+                    href="#pablo"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <i className="ni ni-user-run" />
+                    <span>Logout</span>
+                  </DropdownItem>
+>>>>>>> origin/main
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -466,7 +481,11 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
 
 AdminNavbar.defaultProps = {
   toggleSidenav: () => {},
+<<<<<<< HEAD
   sidenavOpen: true,
+=======
+  sidenavOpen: false,
+>>>>>>> origin/main
   theme: "dark",
 };
 AdminNavbar.propTypes = {

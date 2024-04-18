@@ -24,10 +24,13 @@ import Typography from "views/pages/components/Typography.js";
 import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
+<<<<<<< HEAD
 import Homepage from "components/Homepage/home";
 import { fetchAllChats } from "store/actions/General/authActions";
 import { fetchSectionData } from "layouts/MasterAdmin";
 
+=======
+>>>>>>> origin/main
 const template = [
   {
     collapse: true,
@@ -73,6 +76,7 @@ const template = [
         layout: "/auth",
       },
       {
+<<<<<<< HEAD
         path: "/home",
         name: "Homepage",
         miniName: "H",
@@ -80,6 +84,8 @@ const template = [
         layout: "/auth",
       },
       {
+=======
+>>>>>>> origin/main
         path: "/register",
         name: "Register",
         miniName: "R",
@@ -295,6 +301,7 @@ const template = [
   },
 ];
 
+<<<<<<< HEAD
 // const MasterAdmin = [
 //   {
 //     path: "/dashboard",
@@ -428,43 +435,198 @@ const VOJ = [ {
       views: [],
       onclick: fetchSectionData,
     },
+=======
+const MasterAdmin = [
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: "ni ni-chart-pie-35 text-info",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+  {
+    path: "/approval",
+    name: "Approval",
+    icon: "ni ni-paper-diploma text-red",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+  {
+    collapse: true,
+    name: "Attendance",
+    icon: "ni ni-collection text-green",
+    state: "attendanceCollapse",
+    views: [
+      {
+        path: "/attendanceDashboard",
+        name: "Dashboard",
+        miniName: "AD",
+        component: <Dashboard />,
+        layout: "/MasterAdmin",
+      },
+      {
+        path: "/studentAttendance",
+        name: "Student Attendance",
+        miniName: "SA",
+        component: <Alternative />,
+        layout: "/MasterAdmin",
+      },
+      {
+        path: "/facultyAttendance",
+        name: "Faculty Attendance",
+        miniName: "FA",
+        component: <Alternative />,
+        layout: "/MasterAdmin",
+      },
+    ],
+  },
+  {
+    collapse: true,
+    name: "School Directory",
+    icon: "ni ni-archive-2 text-primary",
+    state: "schoolDirectoryCollapse",
+    views: [
+      {
+        path: "/SchoolDirectoryDashboard",
+        name: "Dashboard",
+        miniName: "DD",
+        component: <Dashboard />,
+        layout: "/MasterAdmin",
+      },
+      {
+        path: "/studentDirectory",
+        name: "Student Directory",
+        miniName: "SD",
+        component: <Alternative />,
+        layout: "/MasterAdmin",
+      },
+      {
+        path: "/assessmentDirectory",
+        name: "Assessment Directory",
+        miniName: "AD",
+        component: <Alternative />,
+        layout: "/MasterAdmin",
+      },
+      {
+        path: "/facultyDirectory",
+        name: "Faculty Directory",
+        miniName: "FD",
+        component: <Alternative />,
+        layout: "/MasterAdmin",
+      },
+    ],
+  },
+  {
+    path: "/events",
+    name: "Events",
+    icon: "ni ni-trophy text-warning",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+  {
+    path: "/circular",
+    name: "Circular Notice",
+    icon: "ni ni-email-83 text-info",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+  {
+    path: "/admissions",
+    name: "New Admission",
+    icon: "ni ni-hat-3 text-warning",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+  {
+    path: "/grievance",
+    name: "Grievance Management",
+    icon: "ni ni-chat-round text-danger",
+    layout: "/MasterAdmin",
+    component: <Dashboard />,
+  },
+];
+const Admin = [
+>>>>>>> origin/main
   {
     path: "/Dashboard",
     name: "Dashboard",
     icon: "ni ni-chart-pie-35 text-info",
+<<<<<<< HEAD
     component: <Dashboard />,
     layout: "/voj",
+=======
+    layout: "/MasterAdmin",
+  },
+];
+const Teacher = [
+  {
+    path: "/Dashboard",
+    name: "Dashboard",
+    icon: "ni ni-chart-pie-35 text-info",
+    layout: "/MasterAdmin",
+  },
+];
+const Student = [
+  {
+    path: "/Dashboard",
+    name: "Dashboard",
+    icon: "ni ni-chart-pie-35 text-info",
+    layout: "/student",
+>>>>>>> origin/main
   },
   {
     path: "/timetable",
     name: "Time Table",
     icon: "ni ni-chart-pie-35 text-info",
+<<<<<<< HEAD
     layout: "/voj",
+=======
+    layout: "/student",
+>>>>>>> origin/main
   },
   {
     path: "/marks",
     name: "Marks",
     icon: "ni ni-chart-pie-35 text-info",
+<<<<<<< HEAD
     layout: "/voj",
+=======
+    layout: "/student",
+>>>>>>> origin/main
   },
   {
     path: "/events",
     name: "Events",
     icon: "ni ni-chart-pie-35 text-info",
+<<<<<<< HEAD
     layout: "/voj",
+=======
+    layout: "/student",
+>>>>>>> origin/main
   },
   {
     path: "/Fees",
     name: "Fees",
     icon: "ni ni-chart-pie-35 text-info",
+<<<<<<< HEAD
     layout: "/voj",
+=======
+    layout: "/student",
+>>>>>>> origin/main
   },
 ];
 
 export const routers = {
   template,
+<<<<<<< HEAD
   // MasterAdmin,
   // Admin,
   // Teacher,
   VOJ,
+=======
+  MasterAdmin,
+  Admin,
+  Teacher,
+  Student,
+>>>>>>> origin/main
 };

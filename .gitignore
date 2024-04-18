@@ -29,5 +29,9 @@ yarn-error.log*
 
 .eslintcache
 
+<<<<<<< HEAD
 package-lock.json
 .env
+=======
+package-lock.json
+>>>>>>> origin/main
