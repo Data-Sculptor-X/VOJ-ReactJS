@@ -38,6 +38,7 @@
     "react-router-dom": "6.21.1",
     "react-scripts": "5.0.1",
     "react-select2-wrapper": "1.0.4-beta6",
+    "react-text-format": "^2.0.32",
     "react-to-print": "2.14.15",
     "reactstrap": "8.10.0",
     "redux": "^5.0.1",

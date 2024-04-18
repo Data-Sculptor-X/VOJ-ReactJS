@@ -5,7 +5,8 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { generatePrompt } from "store/actions/General/authActions"; // Import API function
 import { routers } from "routers";
 import classnames from "classnames";
-
+import { fetchChats } from "store/actions/General/authActions";
+import { connect } from "react-redux";
 // reactstrap components
 import {
   Button,
@@ -24,24 +25,48 @@ import {
   Row,
   Col,
 } from "reactstrap";
-const ChatPage = ({ access_token }) => {
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+const ChatPage = (props) => {
+  console.log(props.chat_data)
+  const dispatch =useDispatch()
+  const paramData = useParams();
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([]);
+  const sectID= paramData["*"]
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
 
+useEffect(()=>{
+  dispatch(fetchChats(sectID))
+},[sectID])
+
+useEffect(()=>{
+setMessages(props.chat_data)
+},[props.chat_data])
+
   const handleInputSubmit = async () => {
     try {
-      const response = await generatePrompt(inputText, access_token);
-      console.log(response)
-      const newMessages = [
-        ...messages,
-        { text: inputText, sender: "user" },
-        { text: JSON.stringify(response), sender: "AI Lawyer" }, // Convert object to string
-      ];
-      setMessages(newMessages);
+      const data = {
+        prompt:inputText,
+        SectionID:paramData["*"],
+      }
+      const response = await generatePrompt(data);
+      dispatch(fetchChats(sectID))
+
+      // console.log(response)
+      // const newMessages = [
+      //   ...messages,
+
+        
+      //   { text: inputText, sender: "user" },
+      //   { text: inputText, sender: "user" },
+      //   { text: inputText, sender: "user" },
+      //   { text: JSON.stringify(response), sender: "AI Lawyer" }, // Convert object to string
+      // ];
+      // setMessages(newMessages);
       setInputText("");
     } catch (error) {
       console.error("Error sending message:", error);
@@ -57,26 +82,44 @@ const ChatPage = ({ access_token }) => {
             key={index}
             style={{
               marginBottom: "20px",
-              textAlign: message.sender === "user" ? "left" : "right",
             }}
           >
+       
             <div
               style={{
-                textAlign: message.sender === "user" ? "left" : "right",
+                textAlign: "left",
                 marginBottom: "10px",
               }}
             >
-              <strong>{message.sender}:</strong>
+              <strong>Don</strong>
             </div>
             <div
               style={{
                 backgroundColor:
-                  message.sender === "user" ? "#f2f2f2" : "#e6f2ff",
+                 "#f2f2f2" ,
                 padding: "10px",
                 borderRadius: "10px",
               }}
             >
-              {message.text}
+              {message.ChatQuestion}
+            </div>
+            <div
+              style={{
+                textAlign: "right",
+                marginBottom: "10px",
+              }}
+            >
+              <strong>AI LAYwer</strong>
+            </div>
+            <div
+              style={{
+                backgroundColor:
+                  "#e6f2ff",
+                padding: "10px",
+                borderRadius: "10px",
+              }}
+            >
+              {message.ChatResponse}
             </div>
           </div>
         ))}
@@ -116,7 +159,7 @@ const ChatPage = ({ access_token }) => {
   );
 };
 
-function Homepage() {
+function Homepage(props) {
   const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = React.useRef(null);
@@ -170,7 +213,7 @@ function Homepage() {
   return (
     <>
       <div className="main-content" ref={mainContentRef}>
-        <ChatPage access_token={sessionStorage.access_token} />
+        <ChatPage access_token={sessionStorage.access_token} {...props} />
       </div>
       {sidenavOpen ? (
         <div className="backdrop d-xl-none" onClick={toggleSidenav} />
@@ -179,4 +222,11 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+const mapStateToProps =({auth})=>({
+  chat_data: auth.chat_data
+})
+const mapDispatchToProps =(dispatch)=>({
+  fetchAllChats:(data)=>dispatch(fetchChats(data))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Homepage);

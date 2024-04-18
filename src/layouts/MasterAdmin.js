@@ -4,45 +4,63 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Homepage from "components/Homepage/home";
-import { fetchAllChats } from "store/actions/General/authActions";
 import { routers } from "routers.js";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchAllSections } from "store/actions/General/authActions";
 
-export function fetchSectionData(setSectionData) {
-  return async () => {
-    try {
-      const data = await fetchAllChats();
-      if (data && data.length > 0) {
-        const truncatedData = data.slice(0, 5); // Limit to recent 5 sections
-        const newSectionData = truncatedData.map((item) => ({
-          SectionID: item.SectionID,
-          SectionName: item.SectionName,
-          path: `/${item.SectionID}`,
-          component: <Homepage />,
-          layout: "/voj",
-        }));
-        setSectionData(newSectionData);
-        console.log(newSectionData);
-      }
-    } catch (error) {
-      console.error("Error fetching section data:", error);
-    }
-  };
-}
-
-function MasterAdmin() {
+function MasterAdmin(props) {
   const [sidenavOpen, setSidenavOpen] = useState(true);
   const location = useLocation();
   const mainContentRef = React.useRef(null);
   const [routes, setRoutes] = useState(routers["VOJ"]);
   const [sectionData, setSectionData] = useState([]);
+console.log(props)
+const dispatch =useDispatch()
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContentRef.current.scrollTop = 0;
 
-    fetchAllChats();
   }, [location]);
+
+useEffect(()=>{
+  props.fetchAllSections()
+},[])
+
+
+  //  const fetchSectionData = async (setSectionData) => {
+  //   try {
+  //     const data = await fetchAllChats();
+  //     if (data && data.length > 0) {
+  //       const truncatedData = data.slice(0, 5); // Limit to recent 5 sections
+  //       const newSectionData = truncatedData.map((item) => ({
+  //         sectionID: item.id,
+  //         name: item.name,
+  //         path: `/${item.id}`,
+  //         component: <Homepage />,
+  //         layout: "/voj",
+  //       }));
+  //       setSectionData(newSectionData);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching section data:", error);
+  //   }
+  // };  
+  useEffect(()=>{
+
+          const truncatedData = props.sectionData?.slice(0, 5); // Limit to recent 5 sections
+          const newSectionData = truncatedData.map((item) => ({
+            sectionID: item.SectionID,
+            name: item.SectionName,
+            path: `/${item.SectionID}`,
+            component: <Homepage />,
+            layout: "/voj",
+          }));
+          setSectionData(newSectionData);
+
+  },[props.sectionData])
 
   useEffect(() => {
     if (sectionData && sectionData.length > 0) {
@@ -130,4 +148,12 @@ function MasterAdmin() {
   ) : null;
 }
 
-export default MasterAdmin;
+
+const mapStateToProps =({auth})=>({
+sectionData:auth.section_data
+})
+const mapDispatchToProps =(dispatch)=>({
+  fetchAllSections:()=>dispatch(fetchAllSections())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(MasterAdmin);

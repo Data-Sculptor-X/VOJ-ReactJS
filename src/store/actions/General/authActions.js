@@ -39,26 +39,28 @@ export const UserGoogleLogin = (token, navigate) => async (dispatch) => {
     });
 };
 
-export const fetchAllChats = () => async () => {
-    const response = await donHttps.get('/core/getSection/');
-    const data = response.data;
-    console.log(data.SectionID)
-    return data.SectionID;
+export const fetchAllSections = () =>  (dispatch) => {
+    donHttps.post('/core/getSection/')    .then(({ data }) => {
+    dispatch({type:"SET_SECTION_DATA",data:data})
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   };
 
-export const fetchChat = () => async () => {
-  try {
-    const response = await donHttps.get('/core/getChat/');
-    const data = response.data;
-    return data;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
+  export const fetchChats = (formData) =>  (dispatch) => {
+    donHttps.post('/core/getChat/',{SectionID:formData}).then(({ data }) => {
+    dispatch({type:"SET_CHAT_DATA",data:data})
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  };
 
 export const generatePrompt = async (prompt) => {
-    const response = await donHttps.post('/core/generate/', {prompt})       
+    const response = await donHttps.post('/core/generate/', prompt)       
     const data = response.data;
     console.log(data.generated_text)
     return data.generated_text;

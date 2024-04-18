@@ -25,8 +25,6 @@ import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
 import Homepage from "components/Homepage/home";
-import { fetchAllChats } from "store/actions/General/authActions";
-import { fetchSectionData } from "layouts/MasterAdmin";
 
 const template = [
   {
@@ -426,7 +424,6 @@ const VOJ = [ {
       icon: "ni ni-collection text-green",
       state: "donCollapse",
       views: [],
-      onclick: fetchSectionData,
     },
   {
     path: "/Dashboard",
