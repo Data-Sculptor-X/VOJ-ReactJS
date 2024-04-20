@@ -7,6 +7,9 @@ import { routers } from "routers";
 import classnames from "classnames";
 import { fetchChats } from "store/actions/General/authActions";
 import { connect } from "react-redux";
+import ReactMarkdown from 'react-markdown';
+import { ThreeDots } from "react-loader-spinner";
+
 // reactstrap components
 import {
   Button,
@@ -27,113 +30,113 @@ import {
 } from "reactstrap";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 const ChatPage = (props) => {
-  console.log(props.chat_data)
-  const dispatch =useDispatch()
+  console.log(props.chat_data);
+  const dispatch = useDispatch();
   const paramData = useParams();
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([]);
-  const sectID= paramData["*"]
+  const [loading, setLoading] = useState(false); // State for loading indicator
+  const sectID = paramData["*"];
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
 
-useEffect(()=>{
-  dispatch(fetchChats(sectID))
-},[sectID])
+  useEffect(() => {
+    dispatch(fetchChats(sectID));
+  }, [sectID]);
 
-useEffect(()=>{
-setMessages(props.chat_data)
-},[props.chat_data])
+  useEffect(() => {
+    setMessages(props.chat_data);
+    setLoading(false); // Turn off loading indicator when messages are received
+  }, [props.chat_data]);
 
   const handleInputSubmit = async () => {
     try {
+      setLoading(true); // Turn on loading indicator while waiting for API response
       const data = {
-        prompt:inputText,
-        SectionID:paramData["*"],
-      }
+        prompt: inputText,
+        SectionID: paramData["*"],
+      };
       const response = await generatePrompt(data);
-      dispatch(fetchChats(sectID))
-
-      // console.log(response)
-      // const newMessages = [
-      //   ...messages,
-
-        
-      //   { text: inputText, sender: "user" },
-      //   { text: inputText, sender: "user" },
-      //   { text: inputText, sender: "user" },
-      //   { text: JSON.stringify(response), sender: "AI Lawyer" }, // Convert object to string
-      // ];
-      // setMessages(newMessages);
+      dispatch(fetchChats(sectID));
       setInputText("");
     } catch (error) {
       console.error("Error sending message:", error);
     }
-  };  
-
+  };
 
   return (
-    <div style={{ margin:"0px, 40px" ,backgroundColor: "ghostwhite", minHeight: "100vh"}}>
-      <div style={{}}>
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: "20px",
-            }}
-          >
-       
-            <div
-              style={{
-                textAlign: "left",
-                marginBottom: "10px",
-              }}
-            >
-              <strong>Don</strong>
+    <div
+      style={{
+        margin: "0px, 40px",
+        backgroundColor: "#ffffff",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ width: "80%" }}>
+        {[...messages].reverse().map((message, index) => {
+          return (
+            <div key={index} style={{ marginBottom: "20px", marginTop: "50px" }}>
+              <div
+                style={{ textAlign: "right", marginBottom: "10px", color: "red" }}
+              >
+                <strong>Don</strong>
+              </div>
+              <div
+                className="user"
+                style={{
+                  backgroundColor: "#ff4d6d",
+                  color: 'white',
+                  padding: "10px",
+                  borderRadius: "18px",
+                  maxWidth: "750px",
+                  textAlign: "right",
+                  wordWrap: "break-word",
+                  marginLeft: "auto",
+                  fontWeight:'bold',
+                }}
+              >
+                <ReactMarkdown>{message.ChatQuestion}</ReactMarkdown>
+              </div>
+              <div
+                style={{ textAlign: "left", marginBottom: "10px", color: "red" }}
+              >
+                <strong>AI Lawyer</strong>
+              </div>
+              <div
+                className="ai"
+                style={{
+                  backgroundColor: "#fff0f0",
+                  padding: "10px",
+                  borderRadius: "18px",
+                  maxWidth: "750px",
+                  textAlign: "left",
+                  wordWrap: "break-word",
+                  marginRight: "auto",
+                  fontWeight:'bold'
+                }}
+              >
+                <ReactMarkdown>{message.ChatResponse}</ReactMarkdown>
+              </div>
             </div>
-            <div
-              style={{
-                backgroundColor:
-                 "#f2f2f2" ,
-                padding: "10px",
-                borderRadius: "10px",
-              }}
-            >
-              {message.ChatQuestion}
-            </div>
-            <div
-              style={{
-                textAlign: "right",
-                marginBottom: "10px",
-              }}
-            >
-              <strong>AI LAYwer</strong>
-            </div>
-            <div
-              style={{
-                backgroundColor:
-                  "#e6f2ff",
-                padding: "10px",
-                borderRadius: "10px",
-              }}
-            >
-              {message.ChatResponse}
-            </div>
+          );
+        })}
+        {loading && (
+          <div style={{ textAlign: "left", marginBottom: "20px" }}>
+            <ThreeDots color="red" height={50} width={50} />
           </div>
-        ))}
+        )}
       </div>
-      <div style={{ position: "relative" }}>
-        
+      <div style={{ position: "relative", width: "80%" }}>
         <FormGroup>
-          <InputGroup
-            className={classnames("input-group-merge", {
-              // focused: location,
-            })}
-          >
+          <InputGroup className={classnames("input-group-merge")}>
             <Input
-              // placeholder="Location"
               type="text"
               placeholder="Type your message..."
               value={inputText}
@@ -143,13 +146,18 @@ setMessages(props.chat_data)
                   handleInputSubmit();
                 }
               }}
-              style={{ maxWidth: "750px" }}
-              // onFocus={(e) => setlocation(true)}
-              // onBlur={(e) => setlocation(false)}
+              style={{ maxWidth: "900", border: "1px solid red" }}
             />
-            <InputGroupAddon addonType="append">
+            <InputGroupAddon
+              style={{ border: "3px solid red", marginLeft: "0.5px" }}
+              addonType="append"
+            >
               <InputGroupText>
-                <i onClick={handleInputSubmit} className="ni ni-send" />
+                <i
+                  onClick={handleInputSubmit}
+                  style={{ color: "red" }}
+                  className="ni ni-send"
+                />
               </InputGroupText>
             </InputGroupAddon>
           </InputGroup>
@@ -222,11 +230,11 @@ function Homepage(props) {
   );
 }
 
-const mapStateToProps =({auth})=>({
-  chat_data: auth.chat_data
-})
-const mapDispatchToProps =(dispatch)=>({
-  fetchAllChats:(data)=>dispatch(fetchChats(data))
-})
+const mapStateToProps = ({ auth }) => ({
+  chat_data: auth.chat_data,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchAllChats: (data) => dispatch(fetchChats(data)),
+});
 
-export default connect(mapStateToProps,mapDispatchToProps)(Homepage);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

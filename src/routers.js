@@ -421,40 +421,14 @@ const template = [
 const VOJ = [ {
       collapse: true,
       name: "Chats",
-      icon: "ni ni-collection text-green",
+      icon: "ni ni-collection text-red",
       state: "donCollapse",
       views: [],
     },
   {
-    path: "/Dashboard",
-    name: "Dashboard",
-    icon: "ni ni-chart-pie-35 text-info",
-    component: <Dashboard />,
-    layout: "/voj",
-  },
-  {
-    path: "/timetable",
-    name: "Time Table",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
-  },
-  {
-    path: "/marks",
-    name: "Marks",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
-  },
-  {
-    path: "/events",
-    name: "Events",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
-  },
-  {
-    path: "/Fees",
-    name: "Fees",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
+    path: "/IndianLaws",
+    name: "Indian Lawbook",
+    icon: "ni ni-chart-pie-35 text-red",
   },
 ];
 

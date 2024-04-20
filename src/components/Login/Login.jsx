@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { userLogin, UserGoogleLogin } from "store/actions/General/authActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
+import logo from "assets/logo.png";
+import { Hourglass } from "react-loader-spinner";
 
 function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     username: "",
     password: "",
+    loading: false // State to manage loading
   });
 
   const handleChange = (evt) => {
@@ -23,38 +26,26 @@ function Login(props) {
   const handleOnLoginSubmit = async (evt) => {
     evt.preventDefault();
     const { username, password } = state;
-     dispatch(userLogin({ username, password },navigate));
-        setState({
-          username: "",
-          password: "",
-        });
-  
+    setState({ ...state, loading: true }); // Set loading to true when login is initiated
+    try {
+      await dispatch(userLogin({ username, password }, navigate));
+      setState({
+        username: "",
+        password: "",
+        loading: false // Set loading to false when login is completed
+      });
+    } catch (error) {
+      setState({ ...state, loading: false }); // Set loading to false if there is an error
+      console.error("Error occurred during login:", error);
+    }
   };
-  
-  
-//   const handleGoogleLoginSubmit = async () => {
-//   try {
-//     const googleResponse = await UserGoogleLogin(); // Use the provided GoogleLogin component
-//     const googleToken = googleResponse.credential; // Extract the access token (if applicable)
-
-//     const dispatchResponse = await dispatch(UserGoogleLogin(googleToken)); // Dispatch the action
-//     if (dispatchResponse && dispatchResponse.token) {
-//       // Handle successful server-side authentication (optional)
-//       navigate('/voj'); // Or perform other actions based on success
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-
 
   return (
     <div className="form-containers sign-up-containers ">
       <div>
         <img
-          src="https://th.bing.com/th/id/OIP.KKdBKvtS7xwDHAdBAVOwkQAAAA?rs=1&pid=ImgDetMain"
-          height={100}
+          src={logo}
+          height={150}
           className="mt-3"
           alt="Logo"
         />
@@ -83,29 +74,27 @@ function Login(props) {
           <a href="#" className="font-weight-bold text-dark d-flex align-items-center">
             Forgot Password ?
           </a>
-          <button type="submit" className="loginButton">Sign In</button>
+          {state.loading ? (
+            <Hourglass visible={true} color="red" height={30} width={30} /> // Display loading spinner
+          ) : (
+            <button type="submit" className="loginButton">Sign In</button>
+          )}
         </div>
         <div className="d-flex justify-content-center my-2">
           <p className="font-weight-bold text-dark">or</p>
         </div>
         <div className="d-flex justify-content-center my-2">
-            {/* <GoogleLogin
-              onSuccess={handleGoogleLoginSubmit}
-              onError={() => {
-                console.log('Login Failed');
-              }}
-            /> */}
-            <GoogleLogin
-                        onSuccess={(credentialResponse) => {
-                          console.log(credentialResponse);
-                          dispatch(UserGoogleLogin(credentialResponse.credential,navigate))
-                        }}
-                        onError={() => {
-                          console.log('Login Failed');
-                        }}
-                        width="100%"
-                      />
-    </div>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              dispatch(UserGoogleLogin(credentialResponse.credential, navigate))
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+            width="100%"
+          />
+        </div>
       </form>
       <div className="text-muted d-flex justify-content-center my-2">
         Copyright © {new Date().getFullYear()} Voice of Justice

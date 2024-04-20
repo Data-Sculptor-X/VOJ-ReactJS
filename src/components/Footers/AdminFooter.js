@@ -59,15 +59,17 @@ function AdminFooter() {
             </Col> */}
 
             <Col xl="12">
-              <div className="copyright text-center text-xl-left text-muted">
-                CopyRight © {new Date().getFullYear()}{" "}
-                <a
+              <div className="copyright text-center text-xl-left text-muted" style={{fontSize:'9px',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                
+              <a style={{color:'red', marginBottom:'12px',marginTop:'9px', fontSize:'12px'}}
                   className="font-weight-bold ml-1"
                   // href="https://www.creative-tim.com?ref=adpr-auth-footer"
                   // target="_blank"
                 >
-                  iComply LifeScience Solutions
+                  Voice of Justice
                 </a>
+                CopyRight © {new Date().getFullYear()}{" "}
+                
               </div>
             </Col>
           </Row>

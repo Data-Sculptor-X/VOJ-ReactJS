@@ -171,10 +171,10 @@ function Sidebar({
         <NavbarBrand
           // {...navbarBrandProps}
           style={{
-            fontFamily: "Alice, serif",
-            fontSize: "45px",
+            fontFamily: "montserrat",
+            fontSize: "18px",
             fontWeight: "900",
-            color: "rgba(101, 11, 150, 1)",
+            color: "red",
             textTransform: "none",
             fontStyle: "normal",
             textDecoration: "none",
@@ -182,7 +182,7 @@ function Sidebar({
             letterSpacing: "0px",
           }}
         >
-          iShala
+          Voice of Justice
         </NavbarBrand>
 
         <div className="ml-auto ">

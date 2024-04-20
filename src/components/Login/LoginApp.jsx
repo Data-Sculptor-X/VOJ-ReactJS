@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "components/Login/style.css";
 import Login from "components/Login/Login";
 import SignUpForm from "components/Login/SignUpForm";
-import ims from "assets/clss.svg";
+import robot from "assets/robot.png";
 
 export default function LoginApp() {
   const [type, setType] = useState("signIn");
@@ -22,8 +22,8 @@ export default function LoginApp() {
         <div className="overlay-containers">
           <div className="overlay">
             <div className="overlay-panel overlay-right"> {/* Signup */}
-              <h1 className="w-100 my-2">Welcome to iShala!</h1>
-              <img src={ims} height="300" />
+              <h1 className="w-100 my-2">Welcome to Voice Of Justice!</h1>
+              <img src={robot} height="300" />
               <button
                 id="signUp"
                 className="signup-right" // Added class "signup-btn"
@@ -33,8 +33,8 @@ export default function LoginApp() {
               </button>
             </div>
             <div className="overlay-panel overlay-left">  {/* Login Page */}
-              <h1 className="w-100 my-2">Welcome to iShala!</h1>
-              <img src={ims} height="300" />
+              <h1 className="w-100 my-2">Welcome to Voice Of Justice!</h1>
+              <img src={robot} height="300" />
               
               <button
                 id="signUp"

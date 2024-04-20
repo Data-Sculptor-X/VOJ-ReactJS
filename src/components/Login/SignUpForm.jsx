@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userRegister } from "store/actions/General/authActions";
-
+import logo from "assets/logo.png";
 function SignUpForm() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -38,8 +38,8 @@ function SignUpForm() {
     <div className="form-containers sign-in-containers ">
       <div>
         <img
-          src="https://th.bing.com/th/id/OIP.KKdBKvtS7xwDHAdBAVOwkQAAAA?rs=1&pid=ImgDetMain"
-          height={100}
+          src={logo}
+          height={150}
           className="mt-3"
         />
         <h1>Voice of Justice</h1>

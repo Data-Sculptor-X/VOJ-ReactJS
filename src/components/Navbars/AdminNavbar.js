@@ -79,13 +79,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   return (
     <>
       <Navbar
+        
         className={classnames(
           "navbar-top navbar-expand border-bottom",
-          { "navbar-dark bg-info": theme === "dark" },
-          { "navbar-light bg-secondary": theme === "light" }
+          // { "navbar-dark bg-info": theme === "dark" },
+          // { "navbar-light bg-secondary": theme === "light" }
         )}
+        style={{backgroundColor:'#ff4d6d'}}
       >
-        <Container fluid>
+        <Container fluid >
           <Collapse navbar isOpen={true}>
             <Form
               className={classnames(
@@ -138,7 +140,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </NavItem>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-bell-55" />
+                  <i className="ni ni-bell-55" style={{color : 'white'}}/>
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-xl py-0 overflow-hidden"
@@ -285,7 +287,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">John Snow</h4>
+                              <h4 className="mb-0 text-sm">John Snow</h4 >
                             </div>
                             <div className="text-right text-muted">
                               <small>3 hrs ago</small>
@@ -310,7 +312,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-ungroup" />
+                  <i className="ni ni-ungroup" style={{color : 'white'}}/>
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-lg dropdown-menu-dark bg-default"
@@ -404,7 +406,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm font-weight-bold">
+                      <span className="mb-0 text-sm font-weight-bold" style={{color:'white'}}>
                         John Snow
                       </span>
                     </Media>

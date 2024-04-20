@@ -236,3 +236,11 @@
   width: 20px;
   height: 20px;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  z-index: 10000;
+}
