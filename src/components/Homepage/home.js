@@ -7,7 +7,7 @@ import { routers } from "routers";
 import classnames from "classnames";
 import { fetchChats } from "store/actions/General/authActions";
 import { connect } from "react-redux";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import { ThreeDots } from "react-loader-spinner";
 
 // reactstrap components
@@ -82,9 +82,16 @@ const ChatPage = (props) => {
       <div style={{ width: "80%" }}>
         {[...messages].reverse().map((message, index) => {
           return (
-            <div key={index} style={{ marginBottom: "20px", marginTop: "50px" }}>
+            <div
+              key={index}
+              style={{ marginBottom: "20px", marginTop: "50px" }}
+            >
               <div
-                style={{ textAlign: "right", marginBottom: "10px", color: "red" }}
+                style={{
+                  textAlign: "right",
+                  marginBottom: "10px",
+                  color: "red",
+                }}
               >
                 <strong>Don</strong>
               </div>
@@ -92,20 +99,27 @@ const ChatPage = (props) => {
                 className="user"
                 style={{
                   backgroundColor: "#ff4d6d",
-                  color: 'white',
+                  color: "white",
                   padding: "10px",
+                  minWidth:'100px',
+                  height:'auto',
                   borderRadius: "18px",
-                  maxWidth: "750px",
-                  textAlign: "right",
+                  maxWidth: "650px", // Adjusted max width to 650px
+                  textAlign: "left",
                   wordWrap: "break-word",
                   marginLeft: "auto",
-                  fontWeight:'bold',
+                  fontWeight: "bold",
+                  width: "fit-content", // Added width to autofit
                 }}
               >
                 <ReactMarkdown>{message.ChatQuestion}</ReactMarkdown>
               </div>
               <div
-                style={{ textAlign: "left", marginBottom: "10px", color: "red" }}
+                style={{
+                  textAlign: "left",
+                  marginBottom: "10px",
+                  color: "red",
+                }}
               >
                 <strong>AI Lawyer</strong>
               </div>
@@ -114,12 +128,15 @@ const ChatPage = (props) => {
                 style={{
                   backgroundColor: "#fff0f0",
                   padding: "10px",
+                  height:'auto',
                   borderRadius: "18px",
-                  maxWidth: "750px",
+                  maxWidth: "650px", // Adjusted max width to 650px
+                  minWidth:'100px',
                   textAlign: "left",
                   wordWrap: "break-word",
                   marginRight: "auto",
-                  fontWeight:'bold'
+                  fontWeight: "bold",
+                  width: "fit-content", // Added width to autofit
                 }}
               >
                 <ReactMarkdown>{message.ChatResponse}</ReactMarkdown>

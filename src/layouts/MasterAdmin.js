@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { routers } from "routers.js";
 import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Homepage from "components/Homepage/home";
-import { routers } from "routers.js";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchAllSections } from "store/actions/General/authActions";
@@ -15,7 +15,6 @@ function MasterAdmin(props) {
   const mainContentRef = React.useRef(null);
   const [routes, setRoutes] = useState(routers["VOJ"]);
   const [sectionData, setSectionData] = useState([]);
-console.log(props)
 const dispatch =useDispatch()
 
   useEffect(() => {

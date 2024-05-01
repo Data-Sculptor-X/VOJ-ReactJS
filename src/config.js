@@ -9,7 +9,7 @@ function setupAuthorizationInterceptorLocal(instance) {
 }
 
 export const donHttps = axios.create({
-  baseURL: process.env.REACT_APP_DON_BACK,
+  baseURL: 'http://127.0.0.1:8000',
 });
 
 setupAuthorizationInterceptorLocal(donHttps); // Setup interceptor

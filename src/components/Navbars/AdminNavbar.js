@@ -46,6 +46,8 @@ import {
   Col,
 } from "reactstrap";
 
+
+
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   // function that on mobile devices makes the search open
   const navigate = useNavigate()

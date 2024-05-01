@@ -25,6 +25,11 @@ import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
 import Homepage from "components/Homepage/home";
+import LawCardsContainer from "components/LawCard";
+import { BsNewspaper } from "react-icons/bs";
+import News from "components/Law News/LawNews";
+import LawyersDisplay from "components/Lawyers List/Lawyerslist";
+
 
 const template = [
   {
@@ -74,7 +79,14 @@ const template = [
         path: "/home",
         name: "Homepage",
         miniName: "H",
-        component: <Homepage/>,
+        component: <Homepage />,
+        layout: "/auth",
+      },
+      {
+        path: "/lawbook",
+        name: "LawBook",
+        miniName: "LB",
+        component: <LawCardsContainer />,
         layout: "/auth",
       },
       {
@@ -418,17 +430,34 @@ const template = [
 //     layout: "/MasterAdmin",
 //   },
 // ];
-const VOJ = [ {
-      collapse: true,
-      name: "Chats",
-      icon: "ni ni-collection text-red",
-      state: "donCollapse",
-      views: [],
-    },
+const VOJ = [
+  {
+    collapse: true,
+    name: "Chats",
+    icon: "fa-solid fa-comments text-red",
+    state: "donCollapse",
+    views: [],
+  },
   {
     path: "/IndianLaws",
     name: "Indian Lawbook",
-    icon: "ni ni-chart-pie-35 text-red",
+    icon: "ni ni-book-bookmark text-red",
+    component: <LawCardsContainer />,
+    layout: "/voj",
+  },
+  {
+    path: "/lawnews",
+    name: "Indian Law News",
+    icon: "fa-solid fa-newspaper text-red",
+    component: <News />,
+    layout: "/voj",
+  },
+  {
+    path: "/lawyers",
+    name: "Contact Lawyers",
+    icon: "fa-solid fa-gavel text-red",
+    component:<LawyersDisplay/>,
+    layout: "/voj",
   },
 ];
 
