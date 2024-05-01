@@ -86,3 +86,9 @@ export const LawyersList = async (filters) => {
   console.log(data);
   return data;
 };
+export const IndianLawList = async (pageno) => {
+  const laws_response = await donHttps.post("/core/getLaws/", pageno);
+  const data = laws_response.data;
+  console.log(data);
+  return data;
+};

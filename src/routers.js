@@ -25,8 +25,7 @@ import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
 import Homepage from "components/Homepage/home";
-import LawCardsContainer from "components/LawCard";
-import { BsNewspaper } from "react-icons/bs";
+import IndianLaws from "components/Indian Laws/IndianLaws";
 import News from "components/Law News/LawNews";
 import LawyersDisplay from "components/Lawyers List/Lawyerslist";
 
@@ -80,13 +79,6 @@ const template = [
         name: "Homepage",
         miniName: "H",
         component: <Homepage />,
-        layout: "/auth",
-      },
-      {
-        path: "/lawbook",
-        name: "LawBook",
-        miniName: "LB",
-        component: <LawCardsContainer />,
         layout: "/auth",
       },
       {
@@ -442,7 +434,7 @@ const VOJ = [
     path: "/IndianLaws",
     name: "Indian Lawbook",
     icon: "ni ni-book-bookmark text-red",
-    component: <LawCardsContainer />,
+    component: <IndianLaws />,
     layout: "/voj",
   },
   {

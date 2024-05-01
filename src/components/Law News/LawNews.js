@@ -57,17 +57,36 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     textAlign: 'center',
   },
+  errorContainer: {
+    textAlign: 'center',
+    padding: theme.spacing(2),
+    backgroundColor: '#ffcccc',
+    borderRadius: '10px',
+    margin: theme.spacing(5),
+  },
+  errorMessage: {
+    color: '#ff6f61',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+  },
 }));
 
 const LawNews = () => {
   const classes = useStyles();
   const [news, setNews] = useState([]);
+  const [error, setError] = useState(false);
   const url = process.env.REACT_APP_NEWS_LINK;
 
   useEffect(() => {
     const fetchNews = async () => {
-      const response = await axios.get(url);
-      setNews(response.data.results);
+      try {
+        const response = await axios.get(url);
+        setNews(response.data.results);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          setError(true);
+        }
+      }
     };
 
     fetchNews();
@@ -76,37 +95,43 @@ const LawNews = () => {
   return (
     <div className={classes.root} >
       <Typography className={classes.heading}>Know What's Happening in Indian Law</Typography>
-      {news.map((results, index) => (
-        <Card className={classes.card} key={index}>
-          <Grid container>
-            <Grid item xs={6}>
-              <CardMedia
-                className={classes.media}
-                image={results.image_url}
-                title={results.title}
-              />
+      {error ? (
+        <div className={classes.errorContainer}>
+          <Typography className={classes.errorMessage}>Session expired, please login again</Typography>
+        </div>
+      ) : (
+        news.map((results, index) => (
+          <Card className={classes.card} key={index}>
+            <Grid container>
+              <Grid item xs={6}>
+                <CardMedia
+                  className={classes.media}
+                  image={results.image_url}
+                  title={results.title}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                    {results.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
+                    {results.pubDate}
+                  </Typography>
+                </CardContent>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                  {results.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                  {results.pubDate}
-                </Typography>
-              </CardContent>
-            </Grid>
-          </Grid>
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {results.description}
-            </Typography>
-            <Box mt={2}>
-              <Button variant="outlined" className={classes.button} href={results.link}>Read more</Button>
-            </Box>
-          </CardContent>
-        </Card>
-      ))}
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {results.description}
+              </Typography>
+              <Box mt={2}>
+                <Button variant="outlined" className={classes.button} href={results.link}>Read more</Button>
+              </Box>
+            </CardContent>
+          </Card>
+        ))
+      )}
     </div>
   );
 };
