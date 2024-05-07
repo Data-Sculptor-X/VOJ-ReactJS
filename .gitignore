@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# production
+/build
+/build.zip
+
 DesktopApp/package-lock.json
 DesktopApp/node_modules
 DesktopApp/dist
