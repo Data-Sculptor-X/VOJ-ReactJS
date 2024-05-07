@@ -8,8 +8,8 @@ function setupAuthorizationInterceptorLocal(instance) {
   });
 }
 
-export const donHttps = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+export const Interceptor = axios.create({
+  baseURL: 'https://voiceofjustice.onrender.com/',
 });
 
-setupAuthorizationInterceptorLocal(donHttps); // Setup interceptor
+setupAuthorizationInterceptorLocal(Interceptor); // Setup interceptor

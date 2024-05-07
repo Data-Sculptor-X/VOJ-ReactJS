@@ -28,6 +28,8 @@ import Homepage from "components/Homepage/home";
 import IndianLaws from "components/Indian Laws/IndianLaws";
 import News from "components/Law News/LawNews";
 import LawyersDisplay from "components/Lawyers List/Lawyerslist";
+import { ForgotPassword } from "store/actions/General/authActions";
+import VerifyUserEmail from "components/Verify Email/VerifyEmail";
 
 
 const template = [
@@ -72,6 +74,20 @@ const template = [
         name: "Login",
         miniName: "L",
         component: <Login />,
+        layout: "/auth",
+      },
+      {
+        path: "/userforgotpassword",
+        name: "Forgot Password",
+        miniName: "L",
+        component: <ForgotPassword />,
+        layout: "/auth",
+      },
+      {
+        path: "/verifyEmail",
+        name: "Verify Email",
+        miniName: "VE",
+        component: <VerifyUserEmail />,
         layout: "/auth",
       },
       {

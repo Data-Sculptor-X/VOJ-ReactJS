@@ -1,44 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { generatePrompt } from "store/actions/General/authActions"; // Import API function
+import { faMicrophone, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
+import { generatePrompt } from "store/actions/General/authActions";
 import { routers } from "routers";
-import classnames from "classnames";
-import { fetchChats } from "store/actions/General/authActions";
+import { fetchChats, UserProfile } from "store/actions/General/authActions";
 import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { ThreeDots } from "react-loader-spinner";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSpeechSynthesis } from "react-speech-kit"; // Import useSpeechSynthesis
+import Logo from "assets/logo.png";
+import Don from "assets/don.jpeg";
 
 // reactstrap components
 import {
   Button,
-  Card,
-  CardHeader,
-  CardBody,
   FormGroup,
   Form,
   Input,
   InputGroupAddon,
-  InputGroupText,
   InputGroup,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Col,
 } from "reactstrap";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const ChatPage = (props) => {
-  console.log(props.chat_data);
   const dispatch = useDispatch();
   const paramData = useParams();
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [loading, setLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [donSpeakingIndex, setDonSpeakingIndex] = useState(null);
+  const [aiSpeakingIndex, setAISpeakingIndex] = useState(null);
   const sectID = paramData["*"];
+
+  const recognition = new window.webkitSpeechRecognition(); // Initialize SpeechRecognition
+  recognition.lang = "en-US"; // Set language
+
+  const { speak, cancel } = useSpeechSynthesis(); // useSpeechSynthesis hook
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -50,37 +50,93 @@ const ChatPage = (props) => {
 
   useEffect(() => {
     setMessages(props.chat_data);
-    setLoading(false); // Turn off loading indicator when messages are received
+    setLoading(false);
   }, [props.chat_data]);
+
+  useEffect(() => {
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      setInputText(speechToText);
+    };
+  }, [recognition]);
 
   const handleInputSubmit = async () => {
     try {
-      setLoading(true); // Turn on loading indicator while waiting for API response
-      const data = {
+      setLoading(true);
+      let data = {
         prompt: inputText,
-        SectionID: paramData["*"],
       };
-      const response = await generatePrompt(data);
-      dispatch(fetchChats(sectID));
+      if (paramData["*"] != "new") {
+        if (props.section_id != "new") {
+          data = {
+            prompt: inputText,
+            SectionID: props.section_id,
+          };
+        } else {
+          data = {
+            prompt: inputText,
+            SectionID: paramData["*"],
+          };
+        }
+      }
+      const response = dispatch(generatePrompt(data));
+      console.log(response);
       setInputText("");
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleInputSubmit();
+    }
+  };
+
+  const toggleListening = () => {
+    if (!isListening) {
+      recognition.start(); // start listening
+    } else {
+      recognition.stop(); // stop listening
+    }
+    setIsListening(!isListening);
+  };
+
+  const handleDonSpeak = (text, index) => {
+    if (donSpeakingIndex === index) {
+      cancel();
+      setDonSpeakingIndex(null);
+    } else {
+      speak({ text });
+      setDonSpeakingIndex(index);
+    }
+  };
+
+  const handleAISpeak = (text, index) => {
+    if (aiSpeakingIndex === index) {
+      cancel();
+      setAISpeakingIndex(null);
+    } else {
+      speak({ text, lang: "en-GB" });
+      setAISpeakingIndex(index);
+    }
+  };
+
   return (
     <div
       style={{
-        margin: "0px, 40px",
+        margin: "0px 40px",
         backgroundColor: "#ffffff",
+        margin: "0 auto",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        paddingBottom: "100px",
       }}
     >
-      <div style={{ width: "80%" }}>
-        {[...messages].reverse().map((message, index) => {
+      <div style={{ width: "80%", marginBottom: "60px", margin: "0 auto" }}>
+        {[...messages]?.reverse()?.map((message, index) => {
           return (
             <div
               key={index}
@@ -93,7 +149,26 @@ const ChatPage = (props) => {
                   color: "red",
                 }}
               >
+                <FontAwesomeIcon
+                  icon={faVolumeUp}
+                  style={{
+                    marginRight: "10px",
+                    cursor: "pointer",
+                    color: donSpeakingIndex === index ? "#ff4d6d" : "grey",
+                  }}
+                  onClick={() => handleDonSpeak(message.ChatQuestion, index)}
+                />
                 <strong>Don</strong>
+
+                <img
+                  src={Don}
+                  alt="Don"
+                  style={{
+                    height: "30px",
+                    marginLeft: "10px",
+                    borderRadius: "50%",
+                  }}
+                />
               </div>
               <div
                 className="user"
@@ -101,15 +176,15 @@ const ChatPage = (props) => {
                   backgroundColor: "#ff4d6d",
                   color: "white",
                   padding: "10px",
-                  minWidth:'100px',
-                  height:'auto',
+                  minWidth: "100px",
+                  height: "auto",
                   borderRadius: "18px",
-                  maxWidth: "650px", // Adjusted max width to 650px
+                  maxWidth: "650px",
                   textAlign: "left",
                   wordWrap: "break-word",
                   marginLeft: "auto",
                   fontWeight: "bold",
-                  width: "fit-content", // Added width to autofit
+                  width: "fit-content",
                 }}
               >
                 <ReactMarkdown>{message.ChatQuestion}</ReactMarkdown>
@@ -121,22 +196,36 @@ const ChatPage = (props) => {
                   color: "red",
                 }}
               >
+                <img
+                  src={Logo}
+                  alt="Don"
+                  style={{ height: "30px", marginRight: "10px" }}
+                />
                 <strong>AI Lawyer</strong>
+                <FontAwesomeIcon
+                  icon={faVolumeUp}
+                  style={{
+                    marginLeft: "10px",
+                    cursor: "pointer",
+                    color: aiSpeakingIndex === index ? "#ff4d6d" : "grey",
+                  }}
+                  onClick={() => handleAISpeak(message.ChatResponse, index)}
+                />
               </div>
               <div
                 className="ai"
                 style={{
                   backgroundColor: "#fff0f0",
                   padding: "10px",
-                  height:'auto',
+                  height: "auto",
                   borderRadius: "18px",
-                  maxWidth: "650px", // Adjusted max width to 650px
-                  minWidth:'100px',
+                  maxWidth: "650px",
+                  minWidth: "100px",
                   textAlign: "left",
                   wordWrap: "break-word",
                   marginRight: "auto",
                   fontWeight: "bold",
-                  width: "fit-content", // Added width to autofit
+                  width: "fit-content",
                 }}
               >
                 <ReactMarkdown>{message.ChatResponse}</ReactMarkdown>
@@ -150,35 +239,55 @@ const ChatPage = (props) => {
           </div>
         )}
       </div>
-      <div style={{ position: "relative", width: "80%" }}>
-        <FormGroup>
-          <InputGroup className={classnames("input-group-merge")}>
-            <Input
-              type="text"
-              placeholder="Type your message..."
-              value={inputText}
-              onChange={handleInputChange}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleInputSubmit();
-                }
-              }}
-              style={{ maxWidth: "900", border: "1px solid red" }}
-            />
-            <InputGroupAddon
-              style={{ border: "3px solid red", marginLeft: "0.5px" }}
-              addonType="append"
-            >
-              <InputGroupText>
-                <i
-                  onClick={handleInputSubmit}
-                  style={{ color: "red" }}
-                  className="ni ni-send"
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          backgroundColor: "#ffffff",
+          padding: "20px",
+        }}
+      >
+        <Form style={{ margin: "0 auto", position: "relative" }}>
+          <FormGroup>
+            <InputGroup style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{ maxWidth: "960px", width: "100%", display: "flex" }}
+              >
+                <FontAwesomeIcon
+                  icon={faMicrophone}
+                  size="2x"
+                  style={{
+                    color: isListening ? "#ff4d6d" : "#000",
+                    cursor: "pointer",
+                    marginTop: "7px",
+                    marginRight: "15px",
+                  }}
+                  onClick={toggleListening}
                 />
-              </InputGroupText>
-            </InputGroupAddon>
-          </InputGroup>
-        </FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Type your message..."
+                  value={inputText}
+                  onChange={handleInputChange}
+                  onKeyPress={handleKeyPress}
+                  style={{
+                    border: "1px solid red",
+                    flex: 1,
+                    paddingLeft: "50px",
+                  
+                  }}
+                />
+                <InputGroupAddon addonType="append">
+                  <Button color="danger" onClick={handleInputSubmit}>
+                    Send
+                  </Button>
+                </InputGroupAddon>
+              </div>
+            </InputGroup>
+          </FormGroup>
+        </Form>
       </div>
     </div>
   );
@@ -218,7 +327,7 @@ function Homepage(props) {
     }
     return "Brand";
   };
-  // toggles collapse between mini sidenav and normal
+
   const toggleSidenav = (e) => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
@@ -240,6 +349,7 @@ function Homepage(props) {
       <div className="main-content" ref={mainContentRef}>
         <ChatPage access_token={sessionStorage.access_token} {...props} />
       </div>
+      <div style={{ paddingBottom: "100px" }} />{" "}
       {sidenavOpen ? (
         <div className="backdrop d-xl-none" onClick={toggleSidenav} />
       ) : null}
@@ -249,6 +359,7 @@ function Homepage(props) {
 
 const mapStateToProps = ({ auth }) => ({
   chat_data: auth.chat_data,
+  section_id: auth.section_id,
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchAllChats: (data) => dispatch(fetchChats(data)),

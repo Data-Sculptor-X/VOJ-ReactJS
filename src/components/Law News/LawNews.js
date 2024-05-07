@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardMedia, Grid, Typography, Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Placeholder from "assets/placeholder.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,33 +101,33 @@ const LawNews = () => {
           <Typography className={classes.errorMessage}>Session expired, please login again</Typography>
         </div>
       ) : (
-        news.map((results, index) => (
+        news.map((result, index) => (
           <Card className={classes.card} key={index}>
             <Grid container>
               <Grid item xs={6}>
                 <CardMedia
                   className={classes.media}
-                  image={results.image_url}
-                  title={results.title}
+                  image={result.image_url || Placeholder} // Use placeholder if image_url is not available
+                  title={result.title}
                 />
               </Grid>
               <Grid item xs={6}>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                    {results.title}
+                    {result.title}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
-                    {results.pubDate}
+                    {result.pubDate}
                   </Typography>
                 </CardContent>
               </Grid>
             </Grid>
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
-                {results.description}
+                {result.description}
               </Typography>
               <Box mt={2}>
-                <Button variant="outlined" className={classes.button} href={results.link}>Read more</Button>
+                <Button variant="outlined" className={classes.button} href={result.link}>Read more</Button>
               </Box>
             </CardContent>
           </Card>

@@ -521,7 +521,7 @@ function Dashboard() {
                       href="#pablo"
                       onClick={(e) => e.preventDefault()}
                     >
-                      John Snow
+                      Don Brightson
                     </a>
                     <small className="d-block text-muted">3 days ago</small>
                   </div>
@@ -2071,7 +2071,7 @@ function Dashboard() {
                   <Row>
                     <div className="col">
                       <span className="h6 surtitle text-light">Name</span>
-                      <span className="d-block h3 text-white">John Snow</span>
+                      <span className="d-block h3 text-white">Don Brightson</span>
                     </div>
                   </Row>
                 </CardBody>

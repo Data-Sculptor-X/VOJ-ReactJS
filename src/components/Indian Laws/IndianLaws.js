@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IndianLawList } from "store/actions/General/authActions";
-import { Card, CardContent, Typography, Box, Button, makeStyles, Accordion, AccordionSummary, AccordionDetails, Grid } from '@material-ui/core';
+import { Card, CardContent, Typography, makeStyles, Accordion, AccordionSummary, AccordionDetails, Grid } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from '@material-ui/lab/Pagination';
 import ReactMarkdown from 'react-markdown';
@@ -72,8 +72,8 @@ const IndianLaws = () => {
           <CardContent>
             <Typography variant="h5" component="h2">
               {law['Act Title']}
-              <Typography variant="body2" component="p" className={classes.enactmentDate}>
-                {law['Enactment Date']}
+              <Typography variant="body2" component="p" className={classes.enactmentDate} style={{marginBottom:'12px', marginTop:'2px'}}>
+               <strong> {law['Enactment Date']} </strong>
               </Typography>
             </Typography>
             <ReactMarkdown>{Object.values(law['Act Definition']).join(' ')}</ReactMarkdown>

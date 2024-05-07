@@ -13,12 +13,11 @@ import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/scss/argon-dashboard-pro-react.scss?v1.2.1";
 import LoginApp from "components/Login/LoginApp";
 import AdminLayout from "layouts/Admin.js";
-import AuthLayout from "layouts/Auth.js";
-import IndexView from "views/Index.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import MasterAdmin from "layouts/MasterAdmin";
-import Homepage from "components/Homepage/home"; // Fix the import statement
-
+import ForgotPasswordComponent from "components/ForgotPassword/ForgotPassword";
+import ResetPassword from "components/ForgotPassword/ResetPassword";
+import VerifyUserEmail from "components/Verify Email/VerifyEmail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -29,6 +28,10 @@ root.render(
         <Route path="/admin/*" element={<AdminLayout />} />
         {/* <Route path="/auth/*" element={<AuthLayout />} /> */}
         <Route path="/voj/*" element={<MasterAdmin />} />
+        <Route path="/userforgotpassword/*" element={<ForgotPasswordComponent />} />
+        <Route path="/verifypassword/*" element={<ResetPassword />} />
+        <Route path="/verifyemail/*" element={<VerifyUserEmail />} />
+        
         {/* <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
                                         <LoginApp />
                                       </GoogleOAuthProvider>}/> */}

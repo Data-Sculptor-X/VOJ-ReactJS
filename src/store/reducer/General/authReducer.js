@@ -3,13 +3,16 @@ const initialState = {
   user_detail: [],
   isAuthenticated: null,
   section_data:[],
-  chat_data:[]
+  chat_data:[],
+  section_id:"new"
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_DETAIL":
       return { ...state, user_detail: state.data };
+      case "SET_SECTION_ID":
+        return { ...state, section_id: state.data };
     case "IS_Authenticated":
       return { ...state, isAuthenticated: state.data };
       case "SET_SECTION_DATA":

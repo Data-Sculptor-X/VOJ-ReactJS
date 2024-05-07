@@ -10,22 +10,36 @@ import {
   MenuItem,
   Box,
   Button,
+  Fade,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import WorkIcon from "@material-ui/icons/Work";
 import DescriptionIcon from "@material-ui/icons/Description";
 import StarRatings from "react-star-ratings";
+import en from "../../variables/en.json";
+import "./LawyersList.css";
 
 const useStyles = makeStyles((theme) => ({
+  
   root: {
     flexGrow: 1,
     padding: theme.spacing(2),
-    backgroundColor: "#fff5f5",
+    backgroundColor: "rgba(255,255,255,0.6)", // Increased transparency
+    fontFamily: "'Roboto', sans-serif",
+    position: "relative",
+    overflow: "hidden",
+    minHeight: "100vh",
+    
   },
   card: {
     maxWidth: 350,
     margin: theme.spacing(2),
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    borderRadius: theme.spacing(2), // Glassmorphic card
+    background: "rgba(255, 255, 255, 0.2)", // Reddish pink background (#FF3333)
+    backdropFilter: "blur(10px)", // Glassmorphic card
+    border: "1px solid rgba(255, 51, 51, 0.5)", // Glassmorphic card
     "&:hover": {
       transform: "scale(1.02)",
       transition: "transform 0.2s",
@@ -34,29 +48,46 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 100,
     width: 100,
+    borderRadius: "50%",
+    margin: "20px",
   },
   select: {
     margin: theme.spacing(1),
     minWidth: 120,
+    border: "1px solid #FF3333", // Reddish pink border for select
+    color: "#FF3333", // Reddish pink color for select
+    '&:focus': {
+      backgroundColor: 'transparent', // Override focus color here
+      borderColor: '#FF3333', // Maintain the border color on focus
+    },
   },
   icon: {
-    color: "#ff6f61",
+    color: "#FF3333", // Reddish pink icon color
     marginRight: theme.spacing(1),
   },
   name: {
     fontSize: "1.2rem",
     fontWeight: "bold",
     marginBottom: theme.spacing(1),
+    color: "#3f3f3f",
   },
   button: {
     color: "#fff",
-    backgroundColor: "#ff6f61",
+    backgroundColor: "#FF3333", // Reddish pink button background
     padding: theme.spacing(1.5, 4),
-    height:'35px',
+    height: "35px",
     borderRadius: theme.spacing(3),
     "&:hover": {
-      backgroundColor: "#e2583e",
+      backgroundColor: "#FF3333", // Maintain the same color on hover
     },
+  },
+  animatedBg: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: -1,
   },
 }));
 
@@ -66,7 +97,7 @@ const LawyersDisplay = () => {
   const [filters, setFilters] = useState({
     page: "1",
     case: "divorce-lawyers",
-    city: "Chennai",
+    place: "Chennai",
   });
 
   useEffect(() => {
@@ -87,32 +118,34 @@ const LawyersDisplay = () => {
 
   return (
     <div className={classes.root}>
+      <div className={classes.animatedBg}>
+        {[...Array(20)].map((_, index) => (
+          <div className="square" key={index}></div> // Changed to squares
+        ))}
+      </div>
       <Select
         name="case"
         value={filters.case}
         onChange={handleFilterChange}
         className={classes.select}
       >
-        <MenuItem value="divorce-lawyers">Divorce Lawyers</MenuItem>
-        <MenuItem value="criminal-lawyers">Criminal Lawyers</MenuItem>
-        <MenuItem value="banking-finance-lawyers">Banking & Finance Lawyers</MenuItem>
-        <MenuItem value="civil-lawyers">Civil Lawyers</MenuItem>
-        <MenuItem value="patent-lawyers">Patent Lawyers</MenuItem>
-        <MenuItem value="property-lawyers">Property Lawyers</MenuItem>
+        {en.case.map((item, index) => (
+          <MenuItem key={index} value={item.key} style={{ color: "#FF3333" }}>
+            {item.value}
+          </MenuItem>
+        ))}
       </Select>
       <Select
-        name="city"
-        value={filters.city}
+        name="place"
+        value={filters.place}
         onChange={handleFilterChange}
         className={classes.select}
       >
-        <MenuItem value="Chennai">Chennai</MenuItem>
-        <MenuItem value="Mumbai">Mumbai</MenuItem>
-        <MenuItem value="Delhi">Delhi</MenuItem>
-        <MenuItem value="Noida">Noida</MenuItem>
-        <MenuItem value="Kerala">Kerala</MenuItem>
-        <MenuItem value="Gurgaon">Gurgaon</MenuItem>▬
-        <MenuItem value="Pune">Pune</MenuItem>
+        {en.city.map((item, index) => (
+          <MenuItem key={index} value={item.key} style={{ color: "#FF3333" }}>
+            {item.value}
+          </MenuItem>
+        ))}
       </Select>
       <Grid container spacing={3}>
         {lawyers.map((lawyer, index) => (
@@ -124,6 +157,7 @@ const LawyersDisplay = () => {
                     className={classes.media}
                     image={lawyer.image_link}
                     title={lawyer.name}
+                    style={{border:'1px solid red'}}
                   />
                 </Grid>
                 <Grid item>
@@ -138,7 +172,7 @@ const LawyersDisplay = () => {
                     <Box display="flex" alignItems="center" mb={2}>
                       <StarRatings
                         rating={Number(lawyer.rating)}
-                        starRatedColor="#ff6f61"
+                        starRatedColor="#FF3333" // Reddish pink star color
                         numberOfStars={5}
                         name="rating"
                         starDimension="20px"
@@ -162,7 +196,7 @@ const LawyersDisplay = () => {
                       className={classes.button}
                       href={lawyer.contact_link}
                     >
-                      Contact
+                      {en.contact}
                     </Button>
                   </CardContent>
                 </Grid>

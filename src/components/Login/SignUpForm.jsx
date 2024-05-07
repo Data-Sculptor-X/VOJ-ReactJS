@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userRegister } from "store/actions/General/authActions";
 import logo from "assets/logo.png";
+
 function SignUpForm() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: "",
     email: "",
     password: "",
+    dob: "", // Added dob field in the state
   });
 
   const handleChange = (evt) => {
@@ -21,16 +23,16 @@ function SignUpForm() {
   const handleOnSubmit = (evt) => {
     evt.preventDefault();
   
-    const { name, email, password } = state;
+    const { name, email, password, dob } = state; // Added dob in the destructuring
 
-    
-    dispatch(userRegister({ name, email, password }));
+    // Added dob in the payload
+    dispatch(userRegister({ name, email, password, dob }));
   
-    
     setState({
       name: "",
       email: "",
       password: "",
+      dob: "",
     });
   };
 
@@ -39,44 +41,51 @@ function SignUpForm() {
       <div>
         <img
           src={logo}
-          height={150}
+          height={80}
           className="mt-3"
+          alt="Logo"
         />
-        <h1>Voice of Justice</h1>
-        <h4>Your Pocket Lawyer</h4>
+        <h4>Voice of Justice</h4>
+        <p>Your Pocket Lawyer</p>
       </div>
-      <form onSubmit={handleOnSubmit} className="loginform  my-4">
-        <h1>Sign Up page</h1>
+      <form onSubmit={handleOnSubmit} className="loginform my-2">
+        <h3>Sign Up</h3>
         <input
-          type="text" // Changed type to "text"
+          type="text"
           name="name"
           value={state.name}
           onChange={handleChange}
-          className="logininput"
-          placeholder="Enter your Fullname"
+          className="logininput mb-1"
+          placeholder="Name"
         />
         <input
           type="email"
           name="email"
           value={state.email}
           onChange={handleChange}
-          className="logininput"
-          placeholder="Enter your Email"
+          className="logininput mb-1"
+          placeholder="Email"
         />
         <input
           type="password"
           name="password"
           value={state.password}
           onChange={handleChange}
-          className="logininput"
-          placeholder="Enter your Password"
+          className="logininput mb-1"
+          placeholder="Password"
         />
-        <div className="d-flex justify-content-end w-100">
-          <button type="submit" className="loginButton">Sign Up</button> {/* Added type="submit" */}
-        </div>
+        <input
+          type="date"
+          name="dob"
+          value={state.dob}
+          onChange={handleChange}
+          className="logininput mb-1"
+          placeholder="Date of Birth"
+        />
+        <button type="submit" className="loginButton mb-1">Sign Up</button>
       </form>
-      <div className=" text-muted d-flex justify-content-center my-3">
-        Copyright © {new Date().getFullYear()} Voice of Justice
+      <div className="text-muted text-center mt-2">
+        © {new Date().getFullYear()} Voice of Justice
       </div>
     </div>
   );

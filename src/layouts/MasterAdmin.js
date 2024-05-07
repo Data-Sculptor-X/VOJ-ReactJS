@@ -49,14 +49,22 @@ useEffect(()=>{
   // };  
   useEffect(()=>{
 
-          const truncatedData = props.sectionData?.slice(0, 5); // Limit to recent 5 sections
-          const newSectionData = truncatedData.map((item) => ({
+          const truncatedData = props.sectionData?.slice(0, 5) // Limit to recent 5 sections
+          let newSectionData = truncatedData.map((item) => ({
             sectionID: item.SectionID,
             name: item.SectionName,
             path: `/${item.SectionID}`,
             component: <Homepage />,
             layout: "/voj",
           }));
+          newSectionData = [{
+
+            sectionID: "new",
+            name: "New Chat",
+            path: `/new`,
+            component: <Homepage />,
+            layout: "/voj",
+          },...newSectionData]
           setSectionData(newSectionData);
 
   },[props.sectionData])

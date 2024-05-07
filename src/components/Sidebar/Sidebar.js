@@ -16,6 +16,7 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
+import Logo from "assets/logo.png";
 
 function Sidebar({
   toggleSidenav,
@@ -25,7 +26,6 @@ function Sidebar({
   rtlActive,
   auth,
 }) {
-  
   const [state, setState] = React.useState({});
   const location = useLocation();
   React.useEffect(() => {
@@ -169,7 +169,6 @@ function Sidebar({
     <div className="scrollbar-inner">
       <div className="sidenav-header d-flex align-items-center">
         <NavbarBrand
-          // {...navbarBrandProps}
           style={{
             fontFamily: "montserrat",
             fontSize: "18px",
@@ -182,6 +181,7 @@ function Sidebar({
             letterSpacing: "0px",
           }}
         >
+          <img src={Logo} alt="Logo" style={{width: 'auto', height: 'auto',marginRight: "3px" }} />
           Voice of Justice
         </NavbarBrand>
 

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { userLogin, UserGoogleLogin } from "store/actions/General/authActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from "@react-oauth/google";
 import logo from "assets/logo.png";
 import { Hourglass } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function Login(props) {
   const [state, setState] = useState({
     username: "",
     password: "",
-    loading: false // State to manage loading
+    loading: false, // State to manage loading
   });
 
   const handleChange = (evt) => {
@@ -32,7 +33,7 @@ function Login(props) {
       setState({
         username: "",
         password: "",
-        loading: false // Set loading to false when login is completed
+        loading: false, // Set loading to false when login is completed
       });
     } catch (error) {
       setState({ ...state, loading: false }); // Set loading to false if there is an error
@@ -43,24 +44,19 @@ function Login(props) {
   return (
     <div className="form-containers sign-up-containers ">
       <div>
-        <img
-          src={logo}
-          height={150}
-          className="mt-3"
-          alt="Logo"
-        />
-        <h1>Voice of Justice</h1>
-        <h4>Your Pocket Lawyer</h4>
+        <img src={logo} height={100} className="mt-3" alt="Logo" />
+        <h3>Voice of Justice</h3>
+        <p>Your Pocket Lawyer</p>
       </div>
-      <form onSubmit={handleOnLoginSubmit} className="loginform my-4">
-        <h1>Login</h1>
+      <form onSubmit={handleOnLoginSubmit} className="loginform my-2">
+        <h2>Login</h2>
         <input
           type="text"
           placeholder="Username"
           name="username"
           value={state.username}
           onChange={handleChange}
-          className="logininput"
+          className="logininput mb-2"
         />
         <input
           type="password"
@@ -68,35 +64,38 @@ function Login(props) {
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
-          className="logininput"
+          className="logininput mb-2"
         />
-        <div className="d-flex justify-content-between w-100 my-2">
-          <a href="#" className="font-weight-bold text-dark d-flex align-items-center">
-            Forgot Password ?
-          </a>
-          {state.loading ? (
-            <Hourglass visible={true} color="red" height={30} width={30} /> // Display loading spinner
-          ) : (
-            <button type="submit" className="loginButton">Sign In</button>
-          )}
-        </div>
-        <div className="d-flex justify-content-center my-2">
-          <p className="font-weight-bold text-dark">or</p>
-        </div>
-        <div className="d-flex justify-content-center my-2">
+        <Link
+          to="/userforgotpassword"
+          className="font-weight-bold text-dark d-block mb-2"
+        >
+          Forgot Password ?
+        </Link>
+        {state.loading ? (
+          <Hourglass visible={true} color="red" height={30} width={30} /> // Display loading spinner
+        ) : (
+          <button type="submit" className="loginButton mb-2">
+            Sign In
+          </button>
+        )}
+        <p className="font-weight-bold text-dark text-center mb-2">or</p>
+        <div className="d-flex justify-content-center">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
               console.log(credentialResponse);
-              dispatch(UserGoogleLogin(credentialResponse.credential, navigate))
+              dispatch(
+                UserGoogleLogin(credentialResponse.credential, navigate)
+              );
             }}
             onError={() => {
-              console.log('Login Failed');
+              console.log("Login Failed");
             }}
             width="100%"
           />
         </div>
       </form>
-      <div className="text-muted d-flex justify-content-center my-2">
+      <div className="text-muted text-center mt-2">
         Copyright © {new Date().getFullYear()} Voice of Justice
       </div>
     </div>
