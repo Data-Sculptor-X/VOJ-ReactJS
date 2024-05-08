@@ -49,7 +49,7 @@ export default function LoginApp() {
             wrapperClass=""
             colors={["#306cce", "#72a1ed"]}
           />
-          <Typography variant="body1" color="text.secondary">
+          <Typography style={{marginTop:"10px"}} variant="body1" color="text.secondary">
             Please wait, our Lawyers are finishing up with their previous cases
           </Typography>
         </div>
