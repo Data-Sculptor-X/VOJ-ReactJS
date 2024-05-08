@@ -39,7 +39,7 @@ export default function LoginApp() {
     <div className="App">
       {loading ? (
         // Render loader while waiting for response
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <div style={{ textAlign: "center", marginTop: "50px", marginBottom:'100px' }}>
           <Hourglass
             visible={true}
             height="80"
@@ -47,9 +47,9 @@ export default function LoginApp() {
             ariaLabel="hourglass-loading"
             wrapperStyle={{}}
             wrapperClass=""
-            colors={["#306cce", "#72a1ed"]}
+            colors={["#FD0606", "#ED7272"]}
           />
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1" style={{color:'red',fontSize:'18px'}}>
             Please wait, our Lawyers are finishing up with their previous cases
           </Typography>
         </div>
