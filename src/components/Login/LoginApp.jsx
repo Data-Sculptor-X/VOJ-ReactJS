@@ -44,12 +44,13 @@ export default function LoginApp() {
             visible={true}
             height="80"
             width="80"
+            marginBottom="24"
             ariaLabel="hourglass-loading"
             wrapperStyle={{}}
             wrapperClass=""
             colors={["#FD0606", "#ED7272"]}
           />
-          <Typography variant="body1" style={{color:'red',fontSize:'18px'}}>
+          <Typography variant="body1" style={{color:'red',fontSize:'18px',marginTop:"12PX"}}>
             Please wait, our Lawyers are finishing up with their previous cases
           </Typography>
         </div>
