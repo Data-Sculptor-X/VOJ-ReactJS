@@ -4,7 +4,7 @@ import Login from "components/Login/Login";
 import SignUpForm from "components/Login/SignUpForm";
 import robot from "assets/robot.png";
 import { Loader } from "store/actions/General/authActions";
-import { Hourglass } from 'react-loader-spinner';
+import { Hourglass } from "react-loader-spinner";
 
 export default function LoginApp() {
   const [type, setType] = useState("signIn");
@@ -31,13 +31,15 @@ export default function LoginApp() {
     }
   };
 
-  const containersClass = "containers " + (type === "signUp" ? "" : "right-panel-active");
+  const containersClass =
+    "containers " + (type === "signUp" ? "" : "right-panel-active");
 
   return (
     <div className="App">
       {loading ? (
         // Render loader while waiting for response
         <div style={{ textAlign: "center", marginTop: "50px" }}>
+          import Typography from '@mui/material/Typography';
           <Hourglass
             visible={true}
             height="80"
@@ -47,7 +49,9 @@ export default function LoginApp() {
             wrapperClass=""
             colors={["#306cce", "#72a1ed"]}
           />
-          <p>Please wait, our Lawyers are finishing up with their previous cases</p>
+          <Typography variant="body1" color="text.secondary">
+            Please wait, our Lawyers are finishing up with their previous cases
+          </Typography>
         </div>
       ) : (
         <div className={containersClass} id="containers">
@@ -84,11 +88,7 @@ export default function LoginApp() {
         </div>
       )}
       {/* Render based on response */}
-      {response && (
-        <div>
-          {/* render based on the response */}
-        </div>
-      )}
+      {response && <div>{/* render based on the response */}</div>}
     </div>
   );
 }
