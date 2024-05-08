@@ -139,3 +139,9 @@ export const IndianLawList = async (pageno) => {
   console.log(data);
   return data;
 };
+export const Loader = async () => {
+  const response = await Interceptor.get("/accounts/serverApi/");
+  const data = response.data;
+  console.log(data);
+  return data;
+};
