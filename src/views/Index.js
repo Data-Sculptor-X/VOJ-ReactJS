@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -48,10 +48,10 @@ function Index() {
                   A complete React solution
                 </h2>
                 <p className="lead text-white">
-                  Argon is a completly new product built on our newest re-built
+                  Voice of Justice is a completly new product built on our newest re-built
                   from scratch framework structure that is meant to make our
                   products more intuitive, more adaptive and, needless to say,
-                  so much easier to customize. Let Argon amaze you with its cool
+                  so much easier to customize. Let Voice of Justice amaze you with its cool
                   features and build tools and get your project to a whole new
                   level.
                 </p>
@@ -74,7 +74,7 @@ function Index() {
                           Based on React and Reactstrap
                         </h4>
                         <p className="description mt-3">
-                          Argon is built on top of the most popular open source
+                          Voice of Justice is built on top of the most popular open source
                           toolkit for developing with HTML, CSS, and JS.
                         </p>
                         <div>
@@ -104,7 +104,7 @@ function Index() {
                           Integrated build tools
                         </h4>
                         <p className="description mt-3">
-                          Use Argons's included npm scripts to compile source
+                          Use Voice of Justices's included npm scripts to compile source
                           code, scss and more with just a few simple commands.
                         </p>
                         <div>
@@ -128,7 +128,7 @@ function Index() {
                           Full Sass support
                         </h4>
                         <p className="description mt-3">
-                          Argon makes customization easier than ever before. You
+                          Voice of Justice makes customization easier than ever before. You
                           get all the tools to make your website building
                           process a breeze.
                         </p>
@@ -279,14 +279,14 @@ function Index() {
                 <h2 className="display-3">Nucleo Icons</h2>
                 <p className="lead">
                   The official package contains over 21.000 icons which are
-                  looking great in combination with Argon Design System. Make
+                  looking great in combination with Voice of Justice Design System. Make
                   sure you check all of them and use those that you like the
                   most.
                 </p>
                 <div className="btn-wrapper">
                   <Button
                     color="info"
-                    href="https://demos.creative-tim.com/argon-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
+                    href="https://demos.creative-tim.com/Voice of Justice-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
                     target="_blank"
                   >
                     View demo icons
@@ -304,7 +304,7 @@ function Index() {
             </Row>
             <div className="blur--hover">
               <a
-                href="https://demos.creative-tim.com/argon-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
+                href="https://demos.creative-tim.com/Voice of Justice-dashboard-pro-react/#/documentation/icons?ref=adpr-index-page"
                 target="_blank"
               >
                 <div className="icons-container blur-item mt-5">
@@ -353,7 +353,7 @@ function Index() {
                   <Button
                     className="btn-neutral mb-3 mb-sm-0"
                     color="default"
-                    href="https://www.creative-tim.com/product/argon-dashboard-react?ref=adpr-index-page"
+                    href="https://www.creative-tim.com/product/Voice of Justice-dashboard-react?ref=adpr-index-page"
                     target="_blank"
                   >
                     <span className="btn-inner--text">Get FREE version</span>
@@ -361,7 +361,7 @@ function Index() {
                   <Button
                     className="btn-icon mb-3 mb-sm-0"
                     color="info"
-                    href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
+                    href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react?ref=adpr-index-page"
                     target="_blank"
                   >
                     <span className="btn-inner--icon">
@@ -384,7 +384,7 @@ function Index() {
                   <Row className="justify-content-center">
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro?ref=adpr-index-page"
                         id="tooltip170669606"
                         target="_blank"
                       >
@@ -400,7 +400,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react?ref=adpr-index-page"
                         id="tooltip374813715"
                         target="_blank"
                       >
@@ -417,7 +417,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro-nodejs?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-nodejs?ref=adpr-index-page"
                         id="tooltip374813716"
                         target="_blank"
                       >
@@ -434,7 +434,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-laravel?ref=adpr-index-page"
                         id="tooltip374813717"
                         target="_blank"
                       >
@@ -451,7 +451,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/vue-argon-dashboard-pro?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/vue-Voice of Justice-dashboard-pro?ref=adpr-index-page"
                         id="tooltip616015001"
                         target="_blank"
                       >
@@ -467,7 +467,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro-angular?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-angular?ref=adpr-index-page"
                         id="tooltip211254026"
                         target="_blank"
                       >
@@ -483,7 +483,7 @@ function Index() {
                     </Col>
                     <Col className="my-2" md="2" xs="3">
                       <a
-                        href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-page"
+                        href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react?ref=adpr-index-page"
                         id="tooltip82987604"
                         target="_blank"
                       >

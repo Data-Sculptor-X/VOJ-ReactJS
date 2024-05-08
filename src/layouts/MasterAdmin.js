@@ -128,7 +128,7 @@ useEffect(()=>{
         sidenavOpen={sidenavOpen}
         logo={{
           innerLink: "/",
-          imgSrc: require("assets/img/brand/argon-react.png"),
+          imgSrc: require("assets/img/brand/Voice of Justice-react.png"),
           imgAlt: "...",
         }}
       />

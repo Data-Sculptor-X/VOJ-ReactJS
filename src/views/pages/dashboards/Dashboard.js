@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -340,7 +340,7 @@ function Dashboard() {
                     <div className="checklist-item checklist-item-info">
                       <div className="checklist-info">
                         <h5 className="checklist-title mb-0">
-                          Argon Dashboard Launch
+                          Voice of Justice Dashboard Launch
                         </h5>
                         <small>10:30 AM</small>
                       </div>
@@ -410,7 +410,7 @@ function Dashboard() {
                         </a>
                       </Col>
                       <div className="col">
-                        <h5>Argon Design System</h5>
+                        <h5>Voice of Justice Design System</h5>
                         <Progress
                           className="progress-xs mb-0"
                           color="orange"
@@ -760,7 +760,7 @@ function Dashboard() {
                             </a>
                             <Media>
                               <span className="name mb-0 text-sm">
-                                Argon Design System
+                                Voice of Justice Design System
                               </span>
                             </Media>
                           </Media>
@@ -1455,7 +1455,7 @@ function Dashboard() {
                             </a>
                             <Media>
                               <span className="name mb-0 text-sm">
-                                Argon Design System
+                                Voice of Justice Design System
                               </span>
                             </Media>
                           </Media>
@@ -2110,7 +2110,7 @@ function Dashboard() {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">/argon/</th>
+                    <th scope="row">/Voice of Justice/</th>
                     <td>4,569</td>
                     <td>340</td>
                     <td>
@@ -2119,7 +2119,7 @@ function Dashboard() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">/argon/index.html</th>
+                    <th scope="row">/Voice of Justice/index.html</th>
                     <td>3,985</td>
                     <td>319</td>
                     <td>
@@ -2128,7 +2128,7 @@ function Dashboard() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">/argon/charts.html</th>
+                    <th scope="row">/Voice of Justice/charts.html</th>
                     <td>3,513</td>
                     <td>294</td>
                     <td>
@@ -2137,7 +2137,7 @@ function Dashboard() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">/argon/tables.html</th>
+                    <th scope="row">/Voice of Justice/tables.html</th>
                     <td>2,050</td>
                     <td>147</td>
                     <td>
@@ -2146,7 +2146,7 @@ function Dashboard() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">/argon/profile.html</th>
+                    <th scope="row">/Voice of Justice/profile.html</th>
                     <td>1,795</td>
                     <td>190</td>
                     <td>

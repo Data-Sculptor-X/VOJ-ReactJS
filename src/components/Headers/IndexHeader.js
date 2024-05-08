@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -30,14 +30,14 @@ function IndexHeader() {
               <Col lg="6">
                 <div className="pr-5">
                   <h1 className="display-2 text-white font-weight-bold mb-0">
-                    Argon Dashboard PRO React
+                    Voice of Justice Dashboard PRO React
                   </h1>
                   <h2 className="display-4 text-white font-weight-light">
                     A beautiful premium dashboard for Bootstrap 4, React and
                     Reactstrap.
                   </h2>
                   <p className="text-white mt-4">
-                    Argon perfectly combines reusable HTML and modular CSS with
+                    Voice of Justice perfectly combines reusable HTML and modular CSS with
                     a modern styling and beautiful markup throughout each HTML
                     template in the pack.
                   </p>
@@ -53,7 +53,7 @@ function IndexHeader() {
                     <Button
                       className="my-2"
                       color="default"
-                      href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-auth-navbar"
+                      href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react?ref=adpr-auth-navbar"
                     >
                       Purchase now
                     </Button>
@@ -69,7 +69,7 @@ function IndexHeader() {
                           <i className="ni ni-active-40" />
                         </div>
                         <h5 className="h3">Components</h5>
-                        <p>Argon comes with over 70 handcrafted components.</p>
+                        <p>Voice of Justice comes with over 70 handcrafted components.</p>
                       </CardBody>
                     </Card>
                     <Card>
@@ -104,7 +104,7 @@ function IndexHeader() {
                           <i className="ni ni-active-40" />
                         </div>
                         <h5 className="h3">Documentation</h5>
-                        <p>You will love how easy is to to work with Argon.</p>
+                        <p>You will love how easy is to to work with Voice of Justice.</p>
                       </CardBody>
                     </Card>
                   </Col>

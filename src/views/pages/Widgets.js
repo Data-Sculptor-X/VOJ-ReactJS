@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -97,13 +97,13 @@ function Widgets() {
               />
               <CardBody>
                 <CardTitle className="h2 mb-0">
-                  Get started with Argon
+                  Get started with Voice of Justice
                 </CardTitle>
                 <small className="text-muted">
                   by Don Brightson on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
-                  Argon is a great free UI package based on Bootstrap 4 that
+                  Voice of Justice is a great free UI package based on Bootstrap 4 that
                   includes the most important components and features.
                 </CardText>
                 <Button
@@ -314,7 +314,7 @@ function Widgets() {
                       </div>
                       <small>2 hrs ago</small>
                     </div>
-                    <h4 className="mt-3 mb-1">New order for Argon Dashboard</h4>
+                    <h4 className="mt-3 mb-1">New order for Voice of Justice Dashboard</h4>
                     <p className="text-sm mb-0">
                       Doasdnec id elit non mi porta gravida at eget metus.
                       Maecenas sed diam eget risus varius blandit.
@@ -537,7 +537,7 @@ function Widgets() {
                         </div>
                       </div>
                       <h6 className="text-sm mt-1 mb-0">
-                        A new issue has been reported for Argon.
+                        A new issue has been reported for Voice of Justice.
                       </h6>
                     </div>
                   </div>
@@ -587,7 +587,7 @@ function Widgets() {
                         </a>
                       </Col>
                       <div className="col">
-                        <h5>Argon Design System</h5>
+                        <h5>Voice of Justice Design System</h5>
                         <Progress
                           color="warning"
                           className="progress-xs mb-0"
@@ -1081,7 +1081,7 @@ function Widgets() {
                     <div className="checklist-item checklist-item-info">
                       <div className="checklist-info">
                         <h5 className="checklist-title mb-0">
-                          Argon Dashboard Launch
+                          Voice of Justice Dashboard Launch
                         </h5>
                         <small>10:30 AM</small>
                       </div>

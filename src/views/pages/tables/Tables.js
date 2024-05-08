@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -88,7 +88,7 @@ function Tables() {
                         </a>
                         <Media>
                           <span className="name mb-0 text-sm">
-                            Argon Design System
+                            Voice of Justice Design System
                           </span>
                         </Media>
                       </Media>
@@ -879,7 +879,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -927,7 +927,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Design System
+                    Voice of Justice Design System
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1023,7 +1023,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1071,7 +1071,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1159,7 +1159,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1207,7 +1207,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Design System
+                    Voice of Justice Design System
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1303,7 +1303,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1351,7 +1351,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td className="table-actions">
@@ -1460,7 +1460,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1502,7 +1502,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Design System
+                    Voice of Justice Design System
                   </a>
                 </td>
                 <td>
@@ -1586,7 +1586,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1628,7 +1628,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1723,7 +1723,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1765,7 +1765,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Design System
+                    Voice of Justice Design System
                   </a>
                 </td>
                 <td>
@@ -1849,7 +1849,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1891,7 +1891,7 @@ function Tables() {
                     href="#pablo"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Argon Dashboard PRO
+                    Voice of Justice Dashboard PRO
                   </a>
                 </td>
                 <td>
@@ -1948,7 +1948,7 @@ function Tables() {
                     </a>
                     <Media>
                       <span className="name mb-0 text-sm">
-                        Argon Design System
+                        Voice of Justice Design System
                       </span>
                     </Media>
                   </Media>
@@ -2619,7 +2619,7 @@ function Tables() {
                         </a>
                         <Media>
                           <span className="name mb-0 text-sm">
-                            Argon Design System
+                            Voice of Justice Design System
                           </span>
                         </Media>
                       </Media>

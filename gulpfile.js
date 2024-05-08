@@ -9,10 +9,10 @@ gulp.task("licenses", function (done) {
       gap.prependText(`/*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.3
+* Voice of Justice Dashboard PRO React - v1.2.3
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2021 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -32,10 +32,10 @@ gulp.task("licenses", function (done) {
       gap.prependText(`<!--
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.3
+* Voice of Justice Dashboard PRO React - v1.2.3
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2021 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -55,10 +55,10 @@ gulp.task("licenses", function (done) {
       gap.prependText(`/*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.3
+* Voice of Justice Dashboard PRO React - v1.2.3
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2021 Creative Tim (http://www.creative-tim.com)
 
 * Coded by Creative Tim

@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -147,7 +147,7 @@ function RTLSupport() {
                         </a>
                       </Col>
                       <div className="col">
-                        <h5>Argon Design System</h5>
+                        <h5>Voice of Justice Design System</h5>
                         <Progress
                           className="progress-xs mb-0"
                           max="100"

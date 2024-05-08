@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -418,7 +418,7 @@ function Alternative() {
                       </a>
                     </Col>
                     <div className="col">
-                      <h5>Argon Design System</h5>
+                      <h5>Voice of Justice Design System</h5>
                       <Progress
                         className="progress-xs mb-0"
                         max="100"
@@ -587,7 +587,7 @@ function Alternative() {
                         </a>
                         <Media>
                           <span className="name mb-0 text-sm">
-                            Argon Design System
+                            Voice of Justice Design System
                           </span>
                         </Media>
                       </Media>
@@ -1273,7 +1273,7 @@ function Alternative() {
                         </a>
                         <Media>
                           <span className="name mb-0 text-sm">
-                            Argon Design System
+                            Voice of Justice Design System
                           </span>
                         </Media>
                       </Media>
@@ -1766,7 +1766,7 @@ function Alternative() {
                   <div className="checklist-item checklist-item-info">
                     <div className="checklist-info">
                       <h5 className="checklist-title mb-0">
-                        Argon Dashboard Launch
+                        Voice of Justice Dashboard Launch
                       </h5>
                       <small>10:30 AM</small>
                     </div>
@@ -1831,7 +1831,7 @@ function Alternative() {
                       </a>
                     </Col>
                     <div className="col">
-                      <h5>Argon Design System</h5>
+                      <h5>Voice of Justice Design System</h5>
                       <Progress
                         className="progress-xs mb-0"
                         max="100"

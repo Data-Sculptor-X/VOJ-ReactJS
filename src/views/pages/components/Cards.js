@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO React - v1.2.5
+* Voice of Justice Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -283,13 +283,13 @@ function Cards() {
 
               <CardBody>
                 <CardTitle className="h2 mb-0">
-                  Get started with Argon
+                  Get started with Voice of Justice
                 </CardTitle>
                 <small className="text-muted">
                   by Don Brightson on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
-                  Argon is a great free UI package based on Bootstrap 4 that
+                  Voice of Justice is a great free UI package based on Bootstrap 4 that
                   includes the most important components and features.
                 </CardText>
                 <Button
