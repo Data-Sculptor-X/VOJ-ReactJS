@@ -73,7 +73,10 @@ function Login(props) {
           Forgot Password ?
         </Link>
         {state.loading ? (
-          <Hourglass visible={true} color="red" height={30} width={30} /> // Display loading spinner
+          <div className="text-center">
+            <Hourglass visible={true} color="red" height={30} width={30} />
+            <p className="mt-2">Logging in...</p>
+          </div>
         ) : (
           <button type="submit" className="loginButton mb-2">
             Sign In

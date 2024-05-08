@@ -30,7 +30,7 @@ root.render(
         <Route path="/voj/*" element={<MasterAdmin />} />
         <Route path="/userforgotpassword/*" element={<ForgotPasswordComponent />} />
         <Route path="/verifypassword/*" element={<ResetPassword />} />
-        <Route path="/verifyemail/*" element={<VerifyUserEmail />} />
+        <Route path="/verifyemail/" element={<VerifyUserEmail />} />
         
         {/* <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
                                         <LoginApp />
