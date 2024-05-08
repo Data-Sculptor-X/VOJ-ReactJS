@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Voice of Justice Dashboard PRO React - v1.2.5
+* Argon Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -40,7 +40,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h1 className="mb-0">Voice of Justice Dashboard PRO React</h1>
+                    <h1 className="mb-0">Argon Dashboard PRO React</h1>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -50,7 +50,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h2 className="mb-0">Voice of Justice Dashboard PRO React</h2>
+                    <h2 className="mb-0">Argon Dashboard PRO React</h2>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -60,7 +60,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h3 className="mb-0">Voice of Justice Dashboard PRO React</h3>
+                    <h3 className="mb-0">Argon Dashboard PRO React</h3>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -70,7 +70,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h4 className="mb-0">Voice of Justice Dashboard PRO React</h4>
+                    <h4 className="mb-0">Argon Dashboard PRO React</h4>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -80,7 +80,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h5 className="mb-0">Voice of Justice Dashboard PRO React</h5>
+                    <h5 className="mb-0">Argon Dashboard PRO React</h5>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -90,7 +90,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h6 className="mb-0">Voice of Justice Dashboard PRO React</h6>
+                    <h6 className="mb-0">Argon Dashboard PRO React</h6>
                   </Col>
                 </Row>
               </CardBody>
@@ -109,7 +109,7 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <h1 className="display-1 mb-0">
-                      Voice of Justice Dashboard PRO React
+                      Argon Dashboard PRO React
                     </h1>
                   </Col>
                 </Row>
@@ -121,7 +121,7 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <h2 className="display-2 mb-0">
-                      Voice of Justice Dashboard PRO React
+                      Argon Dashboard PRO React
                     </h2>
                   </Col>
                 </Row>
@@ -133,7 +133,7 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <h3 className="display-3 mb-0">
-                      Voice of Justice Dashboard PRO React
+                      Argon Dashboard PRO React
                     </h3>
                   </Col>
                 </Row>
@@ -145,7 +145,7 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <h4 className="display-4 mb-0">
-                      Voice of Justice Dashboard PRO React
+                      Argon Dashboard PRO React
                     </h4>
                   </Col>
                 </Row>
@@ -164,7 +164,7 @@ function Typography() {
                     </small>
                   </Col>
                   <Col sm="9">
-                    <h3 className="heading mb-0">Voice of Justice Dashboard PRO React</h3>
+                    <h3 className="heading mb-0">Argon Dashboard PRO React</h3>
                   </Col>
                 </Row>
                 <Row className="py-3 align-items-center">
@@ -175,7 +175,7 @@ function Typography() {
                   </Col>
                   <Col sm="9">
                     <h3 className="heading-title text-info mb-0">
-                      Voice of Justice Dashboard PRO React
+                      Argon Dashboard PRO React
                     </h3>
                   </Col>
                 </Row>

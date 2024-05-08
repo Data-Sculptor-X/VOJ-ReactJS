@@ -10,7 +10,7 @@ import "select2/dist/css/select2.min.css";
 import "quill/dist/quill.core.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/vendor/nucleo/css/nucleo.css";
-import "assets/scss/Voice of Justice-dashboard-pro-react.scss?v1.2.1";
+import "assets/scss/argon-dashboard-pro-react.scss?v1.2.1";
 import LoginApp from "components/Login/LoginApp";
 import AdminLayout from "layouts/Admin.js";
 import { GoogleOAuthProvider } from '@react-oauth/google';

@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Voice of Justice Dashboard PRO React - v1.2.5
+* Argon Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -44,7 +44,7 @@ function AdminNavbar() {
           <NavbarBrand to="/" tag={Link}>
             <img
               alt="..."
-              src={require("assets/img/brand/Voice of Justice-react-white.png")}
+              src={require("assets/img/brand/argon-react-white.png")}
             />
           </NavbarBrand>
           <button
@@ -183,7 +183,7 @@ function AdminNavbar() {
                 <Button
                   className="btn-neutral btn-icon"
                   color="default"
-                  href="https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react?ref=adpr-index-navbar"
+                  href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adpr-index-navbar"
                   target="_blank"
                 >
                   <span className="btn-inner--icon">

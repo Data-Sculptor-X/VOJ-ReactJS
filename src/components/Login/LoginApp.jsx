@@ -5,6 +5,7 @@ import SignUpForm from "components/Login/SignUpForm";
 import robot from "assets/robot.png";
 import { Loader } from "store/actions/General/authActions";
 import { Hourglass } from "react-loader-spinner";
+import Typography from "@mui/material/Typography";
 
 export default function LoginApp() {
   const [type, setType] = useState("signIn");
@@ -39,7 +40,6 @@ export default function LoginApp() {
       {loading ? (
         // Render loader while waiting for response
         <div style={{ textAlign: "center", marginTop: "50px" }}>
-          import Typography from '@mui/material/Typography';
           <Hourglass
             visible={true}
             height="80"
@@ -49,7 +49,7 @@ export default function LoginApp() {
             wrapperClass=""
             colors={["#306cce", "#72a1ed"]}
           />
-          <Typography style={{marginTop:"10px"}} variant="body1" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             Please wait, our Lawyers are finishing up with their previous cases
           </Typography>
         </div>
