@@ -10,7 +10,6 @@ import {
   MenuItem,
   Box,
   Button,
-  Fade,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -21,7 +20,6 @@ import en from "../../variables/en.json";
 import "./LawyersList.css";
 
 const useStyles = makeStyles((theme) => ({
-  
   root: {
     flexGrow: 1,
     padding: theme.spacing(2),
@@ -30,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     overflow: "hidden",
     minHeight: "100vh",
-    
   },
   card: {
     maxWidth: 350,
+    minHeight: "450px",
     margin: theme.spacing(2),
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     borderRadius: theme.spacing(2), // Glassmorphic card
@@ -78,16 +76,13 @@ const useStyles = makeStyles((theme) => ({
     height: "35px",
     borderRadius: theme.spacing(3),
     "&:hover": {
-      backgroundColor: "#FF3333", // Maintain the same color on hover
+      backgroundColor: "#FF3333",
+      color:"white" 
     },
-  },
-  animatedBg: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: -1,
+    bottom: theme.spacing(2),
+    left:"25%",
+    transform: "translateX(-50%)",
   },
 }));
 
@@ -118,11 +113,6 @@ const LawyersDisplay = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.animatedBg}>
-        {[...Array(20)].map((_, index) => (
-          <div className="square" key={index}></div> // Changed to squares
-        ))}
-      </div>
       <Select
         name="case"
         value={filters.case}
@@ -191,14 +181,14 @@ const LawyersDisplay = () => {
                       <DescriptionIcon className={classes.icon} />
                       Practice Area: {lawyer.practice_area}
                     </Box>
-                    <Button
-                      variant="contained"
-                      className={classes.button}
-                      href={lawyer.contact_link}
-                    >
-                      {en.contact}
-                    </Button>
                   </CardContent>
+                  <Button
+                    variant="contained"
+                    className={classes.button}
+                    href={lawyer.contact_link}
+                  >
+                    {en.contact}
+                  </Button>
                 </Grid>
               </Grid>
             </Card>

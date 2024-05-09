@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
-import { generatePrompt } from "store/actions/General/authActions";
-import { routers } from "routers";
-import { fetchChats, UserProfile } from "store/actions/General/authActions";
+import { generatePrompt, fetchChats } from "store/actions/General/authActions";
 import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { ThreeDots } from "react-loader-spinner";
@@ -13,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { useSpeechSynthesis } from "react-speech-kit"; // Import useSpeechSynthesis
 import Logo from "assets/logo.png";
 import Don from "assets/don.jpeg";
+import { routers } from "routers";
 
 // reactstrap components
 import {
@@ -60,26 +59,20 @@ const ChatPage = (props) => {
     };
   }, [recognition]);
 
-  const handleInputSubmit = async () => {
+  const handleInputSubmit = async (e) => {
+    e.preventDefault(); // Prevent form submission
     try {
       setLoading(true);
       let data = {
         prompt: inputText,
       };
-      if (paramData["*"] != "new") {
-        if (props.section_id != "new") {
-          data = {
-            prompt: inputText,
-            SectionID: props.section_id,
-          };
-        } else {
-          data = {
-            prompt: inputText,
-            SectionID: paramData["*"],
-          };
-        }
+      if (paramData["*"] !== "new") {
+        data = {
+          prompt: inputText,
+          SectionID: props.section_id !== "new" ? props.section_id : paramData["*"],
+        };
       }
-      const response = dispatch(generatePrompt(data));
+      const response = await dispatch(generatePrompt(data));
       console.log(response);
       setInputText("");
     } catch (error) {
@@ -88,8 +81,8 @@ const ChatPage = (props) => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleInputSubmit();
+    if (event.key === 'Enter' && !event.shiftKey) { // Check if Enter is pressed without shift key
+      handleInputSubmit(event);
     }
   };
 
@@ -249,7 +242,7 @@ const ChatPage = (props) => {
           padding: "20px",
         }}
       >
-        <Form style={{ margin: "0 auto", position: "relative" }}>
+        <Form style={{ margin: "0 auto", position: "relative" }} onSubmit={handleInputSubmit}>
           <FormGroup>
             <InputGroup style={{ display: "flex", justifyContent: "center" }}>
               <div
@@ -280,7 +273,7 @@ const ChatPage = (props) => {
                   }}
                 />
                 <InputGroupAddon addonType="append">
-                  <Button color="danger" onClick={handleInputSubmit}>
+                  <Button color="danger" type="submit">
                     Send
                   </Button>
                 </InputGroupAddon>

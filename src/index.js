@@ -28,9 +28,9 @@ root.render(
         <Route path="/admin/*" element={<AdminLayout />} />
         {/* <Route path="/auth/*" element={<AuthLayout />} /> */}
         <Route path="/voj/*" element={<MasterAdmin />} />
-        <Route path="/userforgotpassword/*" element={<ForgotPasswordComponent />} />
-        <Route path="/verifypassword/*" element={<ResetPassword />} />
-        <Route path="/verifyEmail/" element={<VerifyUserEmail />} />
+        <Route path="/userforgotpassword" element={<ForgotPasswordComponent />} />
+        <Route path="/verifypassword" element={<ResetPassword />} />
+        <Route path="/verifyEmail" element={<VerifyUserEmail />} />
         
         {/* <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
                                         <LoginApp />

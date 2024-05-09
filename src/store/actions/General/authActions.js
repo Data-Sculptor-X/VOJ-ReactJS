@@ -1,8 +1,7 @@
 import { Interceptor } from "config";
 
 export const userLogin = (formBody, navigate) => async (dispatch) => {
-  Interceptor
-    .post("/accounts/login/", formBody)
+  Interceptor.post("/accounts/login/", formBody)
     .then(({ data }) => {
       console.log(data);
       sessionStorage.setItem("access_token", data.access_token);
@@ -15,8 +14,7 @@ export const userLogin = (formBody, navigate) => async (dispatch) => {
 };
 
 export const userRegister = (formBody) => (dispatch) => {
-  Interceptor
-    .post("/accounts/register/", formBody)
+  Interceptor.post("/accounts/register/", formBody)
     .then(({ data }) => {
       console.log(data);
     })
@@ -27,8 +25,7 @@ export const userRegister = (formBody) => (dispatch) => {
 
 export const UserGoogleLogin = (token, navigate) => async (dispatch) => {
   console.log(token);
-  Interceptor
-    .post("/accounts/glogin/", { token: token })
+  Interceptor.post("/accounts/glogin/", { token: token })
     .then(({ data }) => {
       console.log(data);
       sessionStorage.setItem("access_token", data.access_token);
@@ -41,8 +38,7 @@ export const UserGoogleLogin = (token, navigate) => async (dispatch) => {
 };
 export const UserProfile = (ProfileData) => async (dispatch) => {
   console.log(ProfileData);
-  Interceptor
-    .post("/accounts/userProfile/", { ProfileData: ProfileData })
+  Interceptor.post("/accounts/userProfile/", { ProfileData: ProfileData })
     .then(({ data }) => {
       console.log(data);
       localStorage.setItem("Profile_Data", data.ProfileData);
@@ -70,11 +66,14 @@ export const ForgotPassword = (email) => {
 export const VerifyForgotPassword = ({ otp, password, sso }) => {
   return async (dispatch) => {
     try {
-      const response = await Interceptor.post("/accounts/VerifyForgotPassword/", {
-        otp,
-        password,
-        sso,
-      });
+      const response = await Interceptor.post(
+        "/accounts/VerifyForgotPassword/",
+        {
+          otp,
+          password,
+          sso,
+        }
+      );
       const data = response.data;
       console.log(data);
       dispatch({ type: "VERIFY_FORGOT_PASSWORD_SUCCESS", payload: data });
@@ -85,15 +84,26 @@ export const VerifyForgotPassword = ({ otp, password, sso }) => {
 };
 
 export const VerifyEmail = (sso) => {
-  const response = Interceptor.post("/accounts/VerifyEmail/",sso);
-  const data = response.data;
-  console.log(data);
-  return data;
+  return async (dispatch) => {
+    try {
+      const response = await Interceptor.post("/accounts/VerifyEmail/", sso);
+      const data = response.data;
+      console.log(data);
+      if (response.status === 201) {
+        dispatch({ type: "VERIFY_FORGOT_PASSWORD_SUCCESS", payload: data });
+        return data;
+      } else {
+        throw new Error("Email verification failed");
+      }
+    } catch (error) {
+      dispatch({ type: "VERIFY_FORGOT_PASSWORD_ERROR", error: error.message });
+      throw error;
+    }
+  };
 };
 
 export const fetchAllSections = () => (dispatch) => {
-  Interceptor
-    .post("/core/getSection/")
+  Interceptor.post("/core/getSection/")
     .then(({ data }) => {
       dispatch({ type: "SET_SECTION_DATA", data: data });
     })
@@ -103,8 +113,7 @@ export const fetchAllSections = () => (dispatch) => {
 };
 
 export const fetchChats = (formData) => (dispatch) => {
-  Interceptor
-    .post("/core/getChat/", { SectionID: formData })
+  Interceptor.post("/core/getChat/", { SectionID: formData })
     .then(({ data }) => {
       dispatch({ type: "SET_CHAT_DATA", data: data });
     })
@@ -113,19 +122,15 @@ export const fetchChats = (formData) => (dispatch) => {
     });
 };
 
-export const generatePrompt =  (prompt) =>  (dispatch)  => {
-  Interceptor
-  .post("/core/generate2/",prompt)
-  .then(({ data }) => {
-    dispatch(fetchChats( data.SectionID ))
-    dispatch({type:"SET_SECTION_ID",data:data.SectionID })
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-
-  
+export const generatePrompt = (prompt) => (dispatch) => {
+  Interceptor.post("/core/generate2/", prompt)
+    .then(({ data }) => {
+      dispatch(fetchChats(data.SectionID));
+      dispatch({ type: "SET_SECTION_ID", data: data.SectionID });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 export const LawyersList = async (filters) => {
   const lawyers_response = await Interceptor.post("/core/getLawyer/", filters);
@@ -144,4 +149,11 @@ export const Loader = async () => {
   const data = response.data;
   console.log(data);
   return data;
+};
+
+export const getQuery = async (data) => {
+  const response = await Interceptor.post("/core/getQueryLaw/", data);
+  const Querydata = response.data;
+  console.log(Querydata);
+  return Querydata;
 };

@@ -9,7 +9,7 @@ function setupAuthorizationInterceptorLocal(instance) {
 }
 
 export const Interceptor = axios.create({
-  baseURL: 'https://voiceofjustice.onrender.com/',
+  baseURL: process.env.REACT_APP_BACKEND
 });
 
 setupAuthorizationInterceptorLocal(Interceptor); // Setup interceptor

@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Card, CardContent, CardMedia, Grid, Typography, Box, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+  Box,
+  Button,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Placeholder from "assets/placeholder.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: theme.spacing(2),
-    backgroundColor: '#fff5f5',
+    backgroundColor: "#fff5f5",
   },
   card: {
     maxWidth: "100%",
-    height: 'auto',
+    height: "auto",
     margin: theme.spacing(5),
-    '&:hover': {
-      transform: 'scale(1.02)',
-      transition: 'transform 0.2s',
+    "&:hover": {
+      transform: "scale(1.02)",
+      transition: "transform 0.2s",
     },
-    borderRadius: '15px',
-    boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -2px rgba(0,0,0,0.05)',
+    borderRadius: "15px",
+    boxShadow:
+      "0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -2px rgba(0,0,0,0.05)",
   },
   media: {
     height: 200,
@@ -29,46 +38,46 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
   icon: {
-    color: '#ff6f61',
+    color: "#ff6f61",
     marginRight: theme.spacing(1),
   },
   title: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
+    fontSize: "1.5rem",
+    fontWeight: "bold",
     marginBottom: theme.spacing(1),
   },
   date: {
-    fontSize: '0.8rem',
-    color: '#777',
+    fontSize: "0.8rem",
+    color: "#777",
     marginBottom: theme.spacing(1),
   },
   button: {
-    color: '#ff6f61',
-    borderColor: '#ff6f61',
-    padding: '5px 20px',
-    '&:hover': {
-      backgroundColor: '#ff6f61',
-      color: '#fff',
+    color: "#ff6f61",
+    borderColor: "#ff6f61",
+    padding: "5px 20px",
+    "&:hover": {
+      backgroundColor: "#ff6f61",
+      color: "#fff",
     },
   },
   heading: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#ff6f61',
+    fontSize: "2rem",
+    fontWeight: "bold",
+    color: "#ff6f61",
     marginBottom: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
   },
   errorContainer: {
-    textAlign: 'center',
+    textAlign: "center",
     padding: theme.spacing(2),
-    backgroundColor: '#ffcccc',
-    borderRadius: '10px',
+    backgroundColor: "#ffcccc",
+    borderRadius: "10px",
     margin: theme.spacing(5),
   },
   errorMessage: {
-    color: '#ff6f61',
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
+    color: "#ff6f61",
+    fontSize: "1.2rem",
+    fontWeight: "bold",
   },
 }));
 
@@ -93,12 +102,25 @@ const LawNews = () => {
     fetchNews();
   }, []);
 
+  const truncateDescription = (description) => {
+    if (description && description.length > 150) {
+      return description.substring(0, 280) + "...";
+    } else if (description) {
+      return description;
+    }
+    return "";
+  };
+
   return (
-    <div className={classes.root} >
-      <Typography className={classes.heading}>Know What's Happening in Indian Law</Typography>
+    <div className={classes.root}>
+      <Typography className={classes.heading}>
+        Know What's Happening in Indian Law
+      </Typography>
       {error ? (
         <div className={classes.errorContainer}>
-          <Typography className={classes.errorMessage}>Session expired, please login again</Typography>
+          <Typography className={classes.errorMessage}>
+            Session expired, please login again
+          </Typography>
         </div>
       ) : (
         news.map((result, index) => (
@@ -107,16 +129,26 @@ const LawNews = () => {
               <Grid item xs={6}>
                 <CardMedia
                   className={classes.media}
-                  image={result.image_url || Placeholder} // Use placeholder if image_url is not available
+                  image={result.image_url || Placeholder}
                   title={result.title}
                 />
               </Grid>
               <Grid item xs={6}>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    className={classes.title}
+                  >
                     {result.title}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p" className={classes.date}>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className={classes.date}
+                  >
                     {result.pubDate}
                   </Typography>
                 </CardContent>
@@ -124,10 +156,16 @@ const LawNews = () => {
             </Grid>
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
-                {result.description}
+                {truncateDescription(result.description)}
               </Typography>
               <Box mt={2}>
-                <Button variant="outlined" className={classes.button} href={result.link}>Read more</Button>
+                <Button
+                  variant="outlined"
+                  className={classes.button}
+                  href={result.link}
+                >
+                  Read more
+                </Button>
               </Box>
             </CardContent>
           </Card>
