@@ -39,7 +39,7 @@ root.render(
                                         <LoginApp />
                                       </GoogleOAuthProvider>}/>
         {/* <Route path="/home" element={<Homepage />} />  */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
       </Routes>
     </BrowserRouter>
   </Provider>
