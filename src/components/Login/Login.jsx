@@ -67,7 +67,7 @@ function Login(props) {
           className="logininput mb-2"
         />
         <Link
-          to="/userforgotpassword"
+          to="/login/userforgotpassword"
           className="font-weight-bold text-dark d-block mb-2"
         >
           Forgot Password ?
