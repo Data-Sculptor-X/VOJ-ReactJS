@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Voice of Justice Dashboard PRO React - v1.2.5
+* Argon Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -104,7 +104,7 @@ function Sortable() {
                           </a>
                           <Media>
                             <span className="name mb-0 text-sm">
-                              Voice of Justice Design System
+                              Argon Design System
                             </span>
                           </Media>
                         </Media>
@@ -887,7 +887,7 @@ function Sortable() {
                       </a>
                       <Media>
                         <span className="name mb-0 text-sm">
-                          Voice of Justice Design System
+                          Argon Design System
                         </span>
                       </Media>
                     </Media>
@@ -1559,7 +1559,7 @@ function Sortable() {
                           </a>
                           <Media>
                             <span className="name mb-0 text-sm">
-                              Voice of Justice Design System
+                              Argon Design System
                             </span>
                           </Media>
                         </Media>

@@ -1,10 +1,10 @@
 /*!
 
 =========================================================
-* Voice of Justice Dashboard PRO React - v1.2.5
+* Argon Dashboard PRO React - v1.2.5
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/Voice of Justice-dashboard-pro-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
 * Copyright 2024 Creative Tim (https://www.creative-tim.com)
 
 * Coded by Creative Tim
@@ -129,11 +129,11 @@ const MapDefault = () => {
       position: myLatlng,
       map: map,
       animation: google.maps.Animation.DROP,
-      title: "Voice of Justice Dashboard PRO React!",
+      title: "Argon Dashboard PRO React!",
     });
 
     const contentString =
-      '<div class="info-window-content"><h2>Voice of Justice Dashboard PRO React</h2>' +
+      '<div class="info-window-content"><h2>Argon Dashboard PRO React</h2>' +
       "<p>A premium Admin for Reactstrap, Bootstrap, React, and React Hooks.</p></div>";
 
     const infowindow = new google.maps.InfoWindow({
