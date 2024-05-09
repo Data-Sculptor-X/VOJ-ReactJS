@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate ,Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "store/store";
 import "react-notification-alert/dist/animate.css";
@@ -24,7 +24,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
+    <Switch>
         <Route path="/admin/*" element={<AdminLayout />} />
         {/* <Route path="/auth/*" element={<AuthLayout />} /> */}
         <Route path="/voj/*" element={<MasterAdmin />} />
@@ -40,7 +40,7 @@ root.render(
                                       </GoogleOAuthProvider>}/>
         {/* <Route path="/home" element={<Homepage />} />  */}
         <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
+      </Switch>
     </BrowserRouter>
   </Provider>
 );
