@@ -14,7 +14,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // nodejs library to set properties for components
@@ -46,12 +47,27 @@ import {
   Col,
 } from "reactstrap";
 
-
+import { UserProfile } from "store/actions/General/authActions";
 
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
-  // function that on mobile devices makes the search open
-  const navigate = useNavigate()
-  
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const profileData = useSelector((state) => state.profileData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(UserProfile());
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
     setTimeout(function () {
@@ -81,15 +97,14 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   return (
     <>
       <Navbar
-        
         className={classnames(
-          "navbar-top navbar-expand border-bottom",
+          "navbar-top navbar-expand border-bottom"
           // { "navbar-dark bg-info": theme === "dark" },
           // { "navbar-light bg-secondary": theme === "light" }
         )}
-        style={{backgroundColor:'#ff4d6d'}}
+        style={{ backgroundColor: "#ff4d6d" }}
       >
-        <Container fluid >
+        <Container fluid>
           <Collapse navbar isOpen={true}>
             <Form
               className={classnames(
@@ -142,7 +157,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </NavItem>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-bell-55" style={{color : 'white'}}/>
+                  <i className="ni ni-bell-55" style={{ color: "white" }} />
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-xl py-0 overflow-hidden"
@@ -173,7 +188,13 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">Don Brightson</h4>
+                              <h4 className="mb-0 text-sm">
+                                <h4 className="mb-0 text-sm">
+                                  {profileData && profileData.name
+                                    ? profileData.name
+                                    : "No Name"}
+                                </h4>
+                              </h4>
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -231,7 +252,13 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">Don Brightson</h4>
+                              <h4 className="mb-0 text-sm">
+                                <h4 className="mb-0 text-sm">
+                                  {profileData && profileData.name
+                                    ? profileData.name
+                                    : "No Name"}
+                                </h4>
+                              </h4>
                             </div>
                             <div className="text-right text-muted">
                               <small>5 hrs ago</small>
@@ -260,7 +287,13 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">Don Brightson</h4>
+                              <h4 className="mb-0 text-sm">
+                                <h4 className="mb-0 text-sm">
+                                  {profileData && profileData.name
+                                    ? profileData.name
+                                    : "No Name"}
+                                </h4>
+                              </h4>
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -289,7 +322,13 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">Don Brightson</h4 >
+                              <h4 className="mb-0 text-sm">
+                                <h4 className="mb-0 text-sm">
+                                  {profileData && profileData.name
+                                    ? profileData.name
+                                    : "No Name"}
+                                </h4>
+                              </h4>
                             </div>
                             <div className="text-right text-muted">
                               <small>3 hrs ago</small>
@@ -314,7 +353,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-ungroup" style={{color : 'white'}}/>
+                  <i className="ni ni-ungroup" style={{ color: "white" }} />
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-lg dropdown-menu-dark bg-default"
@@ -408,8 +447,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm font-weight-bold" style={{color:'white'}}>
-                        Don Brightson
+                      <span
+                        className="mb-0 text-sm font-weight-bold"
+                        style={{ color: "white" }}
+                      >
+                        <h4 className="mb-0 text-sm">
+                          {profileData && profileData.name
+                            ? profileData.name
+                            : "Loading..."}
+                        </h4>
                       </span>
                     </Media>
                   </Media>
@@ -448,16 +494,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem
-                  href="#pablo"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/login");
-                  }}
-                >
-                  <i className="ni ni-user-run" />
-                  <span>Logout</span>
-                </DropdownItem>
-
+                    href="#pablo"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/login");
+                    }}
+                  >
+                    <i className="ni ni-user-run" />
+                    <span>Logout</span>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

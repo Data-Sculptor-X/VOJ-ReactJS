@@ -37,16 +37,18 @@ export const UserGoogleLogin = (token, navigate) => async (dispatch) => {
     });
 };
 export const UserProfile = (ProfileData) => async (dispatch) => {
-  console.log(ProfileData);
-  Interceptor.post("/accounts/userProfile/", { ProfileData: ProfileData })
+  console.log("ProfileData:", ProfileData); // Check if ProfileData is received properly
+  Interceptor.get("/accounts/userProfile/", { ProfileData: ProfileData })
     .then(({ data }) => {
-      console.log(data);
-      localStorage.setItem("Profile_Data", data.ProfileData);
+      console.log("Response from API:", data); // Log response from API
+      dispatch({ type: 'SET_PROFILE_DATA', payload: data });
+      localStorage.setItem("Profile_Data", JSON.stringify(data));
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
 
 export const ForgotPassword = (email) => {
   return async (dispatch) => {
