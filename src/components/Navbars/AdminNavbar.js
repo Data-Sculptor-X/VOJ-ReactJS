@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.5
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // nodejs library that concatenates classes
@@ -22,6 +6,8 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 // reactstrap components
 import { useNavigate } from "react-router-dom";
+
+import User from "assets/user.svg";
 
 import {
   Collapse,
@@ -52,23 +38,20 @@ import { UserProfile } from "store/actions/General/authActions";
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const profileData = useSelector((state) => state.profileData);
+  const [name, setName] = useState("");
+  const [profile_picture, setPFP] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const storedData = localStorage.getItem("Profile_Data");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          dispatch({ type: "SET_PROFILE_DATA", payload: parsedData });
-          setLoading(false);
-        } else {
-          await dispatch(UserProfile());
-          setLoading(false);
-        }
+        const data = await dispatch(UserProfile());
+        setName(data.name);
+        setPFP(data.profile_picture);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        setLoading(false);
       }
     };
 
@@ -189,7 +172,11 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-1.jpg")}
+                            src={
+                              profile_picture ||
+                              profile_picture ||
+                              "https://th.bing.com/th/id/OIP.fqSvfYQB0rQ-6EG_oqvonQHaHa?rs=1&pid=ImgDetMain"
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -199,9 +186,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                 <h4 className="mb-0 text-sm">Loading...</h4>
                               ) : (
                                 <h4 className="mb-0 text-sm">
-                                  {profileData && profileData.name
-                                    ? profileData.name
-                                    : "No Name"}
+                                  {name || "No Name"}
                                 </h4>
                               )}
                             </div>
@@ -226,7 +211,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-2.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -255,7 +242,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-3.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -267,9 +256,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                     <h4 className="mb-0 text-sm">Loading...</h4>
                                   ) : (
                                     <h4 className="mb-0 text-sm">
-                                      {profileData && profileData.name
-                                        ? profileData.name
-                                        : "No Name"}
+                                      {name || "No Name"}
                                     </h4>
                                   )}
                                 </div>
@@ -296,7 +283,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-4.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -306,9 +295,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                 <h4 className="mb-0 text-sm">Loading...</h4>
                               ) : (
                                 <h4 className="mb-0 text-sm">
-                                  {profileData && profileData.name
-                                    ? profileData.name
-                                    : "No Name"}
+                                  {name || "No Name"}
                                 </h4>
                               )}
                             </div>
@@ -333,7 +320,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-5.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -343,9 +332,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                 <h4 className="mb-0 text-sm">Loading...</h4>
                               ) : (
                                 <h4 className="mb-0 text-sm">
-                                  {profileData && profileData.name
-                                    ? profileData.name
-                                    : "No Name"}
+                                  {name || "No Name"}
                                 </h4>
                               )}
                             </div>
@@ -461,8 +448,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <Media className="align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
                       <img
-                        alt="..."
-                        src={require("assets/img/theme/team-4.jpg")}
+                        src={profile_picture === null ? User : profile_picture}
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
@@ -475,9 +461,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                             <h4 className="mb-0 text-sm">Loading...</h4>
                           ) : (
                             <h4 className="mb-0 text-sm">
-                              {profileData && profileData.name
-                                ? profileData.name
-                                : "No Name"}
+                              {name || "No Name"}
                             </h4>
                           )}
                         </div>

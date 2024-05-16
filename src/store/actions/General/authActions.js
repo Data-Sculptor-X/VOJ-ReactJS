@@ -36,18 +36,21 @@ export const UserGoogleLogin = (token, navigate) => async (dispatch) => {
       console.log(err);
     });
 };
-export const UserProfile = (ProfileData) => async (dispatch) => {
-  console.log("ProfileData:", ProfileData); // Check if ProfileData is received properly
-  Interceptor.get("/accounts/userProfile/", { ProfileData: ProfileData })
-    .then(({ data }) => {
-      console.log("Response from API:", data); // Log response from API
-      dispatch({ type: "SET_PROFILE_DATA", data });
-      localStorage.setItem("Profile_Data", JSON.stringify(data)); // Convert data to string before storing
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export const UserProfile = (ProfileData) => (dispatch) => {
+  return new Promise((resolve, reject) => {
+    Interceptor.get("/accounts/userProfile/", { ProfileData: ProfileData })
+      .then(({ data }) => {
+        console.log("Response from API:", data); // Log response from API
+        dispatch({ type: "SET_PROFILE_DATA", data });
+        resolve(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
 };
+
 
 export const ForgotPassword = (email) => {
   return async (dispatch) => {

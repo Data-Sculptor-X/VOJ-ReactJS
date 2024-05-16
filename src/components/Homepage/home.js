@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSpeechSynthesis } from "react-speech-kit"; // Import useSpeechSynthesis
 import Logo from "assets/logo.png";
-import Don from "assets/don.jpeg";
+import User from "assets/user.svg";
 import { routers } from "routers";
 
 // reactstrap components
@@ -22,17 +22,45 @@ import {
   InputGroupAddon,
   InputGroup,
 } from "reactstrap";
+import { UserProfile } from "store/actions/General/authActions";
 
 const ChatPage = (props) => {
-  const dispatch = useDispatch();
-  const paramData = useParams();
+  const dispatch = useDispatch(); // Moved useDispatch here
+  const [name, setName] = useState("");
+  const [profile_picture, setPFP] = useState("");
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [donSpeakingIndex, setDonSpeakingIndex] = useState(null);
   const [aiSpeakingIndex, setAISpeakingIndex] = useState(null);
+  const paramData = useParams();
   const sectID = paramData["*"];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await dispatch(UserProfile());
+        setName(data.name);
+        setPFP(data.profile_picture);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchChats(sectID));
+  }, [dispatch, sectID]);
+
+  useEffect(() => {
+    setMessages(props.chat_data);
+    setLoading(false);
+  }, [props.chat_data]);
 
   const recognition = new window.webkitSpeechRecognition(); // Initialize SpeechRecognition
   recognition.lang = "en-US"; // Set language
@@ -42,15 +70,6 @@ const ChatPage = (props) => {
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
-
-  useEffect(() => {
-    dispatch(fetchChats(sectID));
-  }, [sectID]);
-
-  useEffect(() => {
-    setMessages(props.chat_data);
-    setLoading(false);
-  }, [props.chat_data]);
 
   useEffect(() => {
     recognition.onresult = (event) => {
@@ -69,7 +88,8 @@ const ChatPage = (props) => {
       if (paramData["*"] !== "new") {
         data = {
           prompt: inputText,
-          SectionID: props.section_id !== "new" ? props.section_id : paramData["*"],
+          SectionID:
+            props.section_id !== "new" ? props.section_id : paramData["*"],
         };
       }
       const response = await dispatch(generatePrompt(data));
@@ -81,7 +101,8 @@ const ChatPage = (props) => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) { // Check if Enter is pressed without shift key
+    if (event.key === "Enter" && !event.shiftKey) {
+      // Check if Enter is pressed without shift key
       handleInputSubmit(event);
     }
   };
@@ -151,10 +172,14 @@ const ChatPage = (props) => {
                   }}
                   onClick={() => handleDonSpeak(message.ChatQuestion, index)}
                 />
-                <strong>Don</strong>
+                <strong>{name}</strong>
 
                 <img
-                  src={Don}
+                  src={
+                    profile_picture === null
+                      ? User
+                      : profile_picture
+                  }
                   alt="Don"
                   style={{
                     height: "30px",
@@ -242,7 +267,10 @@ const ChatPage = (props) => {
           padding: "20px",
         }}
       >
-        <Form style={{ margin: "0 auto", position: "relative" }} onSubmit={handleInputSubmit}>
+        <Form
+          style={{ margin: "0 auto", position: "relative" }}
+          onSubmit={handleInputSubmit}
+        >
           <FormGroup>
             <InputGroup style={{ display: "flex", justifyContent: "center" }}>
               <div
@@ -269,7 +297,6 @@ const ChatPage = (props) => {
                     border: "1px solid red",
                     flex: 1,
                     paddingLeft: "50px",
-                  
                   }}
                 />
                 <InputGroupAddon addonType="append">
