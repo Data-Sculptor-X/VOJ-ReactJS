@@ -41,14 +41,13 @@ export const UserProfile = (ProfileData) => async (dispatch) => {
   Interceptor.get("/accounts/userProfile/", { ProfileData: ProfileData })
     .then(({ data }) => {
       console.log("Response from API:", data); // Log response from API
-      dispatch({ type: 'SET_PROFILE_DATA', payload: data });
-      localStorage.setItem("Profile_Data", JSON.stringify(data));
+      dispatch({ type: "SET_PROFILE_DATA", data });
+      localStorage.setItem("Profile_Data", JSON.stringify(data)); // Convert data to string before storing
     })
     .catch((err) => {
       console.log(err);
     });
 };
-
 
 export const ForgotPassword = (email) => {
   return async (dispatch) => {

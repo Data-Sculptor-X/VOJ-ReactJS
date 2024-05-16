@@ -58,8 +58,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await dispatch(UserProfile());
-        setLoading(false);
+        const storedData = localStorage.getItem("Profile_Data");
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          dispatch({ type: "SET_PROFILE_DATA", payload: parsedData });
+          setLoading(false);
+        } else {
+          await dispatch(UserProfile());
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
@@ -188,13 +195,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
                                 <h4 className="mb-0 text-sm">
                                   {profileData && profileData.name
                                     ? profileData.name
                                     : "No Name"}
                                 </h4>
-                              </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -253,11 +262,17 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
                               <h4 className="mb-0 text-sm">
-                                <h4 className="mb-0 text-sm">
-                                  {profileData && profileData.name
-                                    ? profileData.name
-                                    : "No Name"}
-                                </h4>
+                                <div>
+                                  {loading ? (
+                                    <h4 className="mb-0 text-sm">Loading...</h4>
+                                  ) : (
+                                    <h4 className="mb-0 text-sm">
+                                      {profileData && profileData.name
+                                        ? profileData.name
+                                        : "No Name"}
+                                    </h4>
+                                  )}
+                                </div>
                               </h4>
                             </div>
                             <div className="text-right text-muted">
@@ -287,13 +302,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
                                 <h4 className="mb-0 text-sm">
                                   {profileData && profileData.name
                                     ? profileData.name
                                     : "No Name"}
                                 </h4>
-                              </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -322,13 +339,15 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
                                 <h4 className="mb-0 text-sm">
                                   {profileData && profileData.name
                                     ? profileData.name
                                     : "No Name"}
                                 </h4>
-                              </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>3 hrs ago</small>
@@ -451,11 +470,17 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                         className="mb-0 text-sm font-weight-bold"
                         style={{ color: "white" }}
                       >
-                        <h4 className="mb-0 text-sm">
-                          {profileData && profileData.name
-                            ? profileData.name
-                            : "Loading..."}
-                        </h4>
+                        <div>
+                          {loading ? (
+                            <h4 className="mb-0 text-sm">Loading...</h4>
+                          ) : (
+                            <h4 className="mb-0 text-sm">
+                              {profileData && profileData.name
+                                ? profileData.name
+                                : "No Name"}
+                            </h4>
+                          )}
+                        </div>
                       </span>
                     </Media>
                   </Media>
