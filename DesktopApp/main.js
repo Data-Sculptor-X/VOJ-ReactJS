@@ -1,3 +1,5 @@
+import Logo from "assets/logo.png";
+
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
@@ -12,7 +14,7 @@ function createWindow() {
       nodeIntegration: true,
     },
     title: "iControl", // Set your desired application title
-    icon: path.join(__dirname, "favicon.ico"), // Replace 'icon.ico' with your ICO file name and path
+    icon: path.join(__dirname, Logo), // Replace 'icon.ico' with your ICO file name and path
   });
 
   // Load the URL
