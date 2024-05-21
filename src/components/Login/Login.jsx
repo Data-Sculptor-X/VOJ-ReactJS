@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import logo from "assets/logo.png";
-import { Hourglass } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { RevolvingDot } from "react-loader-spinner";
 
 function Login(props) {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ function Login(props) {
         </Link>
         {state.loading ? (
           <div className="text-center">
-            <Hourglass visible={true} color="red" height={30} width={30} />
+            <RevolvingDot type="ThreeDots" color="#00BFFF" height={80} width={80} />
             <p className="mt-2">Logging in...</p>
           </div>
         ) : (
@@ -82,6 +82,7 @@ function Login(props) {
             Sign In
           </button>
         )}
+
         <p className="font-weight-bold text-dark text-center mb-2">or</p>
         <div className="d-flex justify-content-center">
           <GoogleLogin
