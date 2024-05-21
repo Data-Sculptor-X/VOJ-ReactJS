@@ -16,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     textAlign: "center",
   },
+  superheading: {
+    fontSize: "3rem",
+    marginBottom:"20px",
+    fontWeight: "800",
+    color: "#ff6f61",
+    marginBottom: theme.spacing(2),
+    textAlign: "center",
+  },
   section: {
     marginBottom: theme.spacing(2),
   },
@@ -34,7 +42,7 @@ const PrivacyPolicy = () => {
 
   return (
     <Container className={classes.root}>
-      <Typography className={classes.heading}>Privacy Policy</Typography>
+      <Typography className={classes.superheading}>Privacy Policy</Typography>
       <div className={classes.section}>
         <Typography variant="h6" className={classes.heading}>
           1. Introduction
