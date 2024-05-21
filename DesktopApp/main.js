@@ -13,7 +13,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
-    title: "iControl", // Set your desired application title
+    title: "Voice of Justice", // Set your desired application title
     icon: path.join(__dirname, Logo), // Replace 'icon.ico' with your ICO file name and path
   });
 

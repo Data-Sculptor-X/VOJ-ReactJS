@@ -18,6 +18,7 @@ import MasterAdmin from "layouts/MasterAdmin";
 import ForgotPasswordComponent from "components/ForgotPassword/ForgotPassword";
 import ResetPassword from "components/ForgotPassword/ResetPassword";
 import VerifyUserEmail from "components/Verify Email/VerifyEmail";
+import PrivacyPolicy from "components/Privacy Policy/PrivacyPolicy";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -31,7 +32,7 @@ root.render(
         <Route path="/userforgotpassword" element={<ForgotPasswordComponent />} />
         <Route path="/verifypassword" element={<ResetPassword />} />
         <Route path="/verifyEmail" element={<VerifyUserEmail />} />
-        
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         {/* <Route path="/login" element={<GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
                                         <LoginApp />
                                       </GoogleOAuthProvider>}/> */}
