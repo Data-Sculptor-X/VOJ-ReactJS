@@ -4,7 +4,7 @@ import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import Homepage from "components/Homepage/home";
+import Homepage from "components/Chatpage/chat";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchAllSections } from "store/actions/General/authActions";

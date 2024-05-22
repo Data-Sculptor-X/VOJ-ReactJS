@@ -24,7 +24,7 @@ import Typography from "views/pages/components/Typography.js";
 import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
-import Homepage from "components/Homepage/home";
+import Homepage from "components/Chatpage/chat";
 import IndianLaws from "components/Indian Laws/IndianLaws";
 import News from "components/Law News/LawNews";
 import LawyersDisplay from "components/Lawyers List/Lawyerslist";
