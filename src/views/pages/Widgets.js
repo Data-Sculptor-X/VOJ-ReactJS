@@ -100,7 +100,7 @@ function Widgets() {
                   Get started with Argon
                 </CardTitle>
                 <small className="text-muted">
-                  by John Snow on Oct 29th at 10:23 AM
+                  by Don Brightson on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
                   Argon is a great free UI package based on Bootstrap 4 that
@@ -273,7 +273,7 @@ function Widgets() {
                       <div className="col ml--2">
                         <h4 className="mb-0">
                           <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                            John Snow
+                            Don Brightson
                           </a>
                         </h4>
                         <span className="text-success mr-1">●</span>
@@ -722,7 +722,7 @@ function Widgets() {
                 <Row>
                   <div className="col">
                     <span className="h6 surtitle text-muted">Name</span>
-                    <span className="d-block h3">John Snow</span>
+                    <span className="d-block h3">Don Brightson</span>
                   </div>
                 </Row>
               </CardBody>
@@ -935,7 +935,7 @@ function Widgets() {
                 <Row>
                   <div className="col">
                     <span className="h6 surtitle text-light">Name</span>
-                    <span className="d-block h3 text-white">John Snow</span>
+                    <span className="d-block h3 text-white">Don Brightson</span>
                   </div>
                   <div className="col">
                     <span className="h6 surtitle text-light">Expiry date</span>

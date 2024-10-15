@@ -1,1 +1,1 @@
-# iShala-frontend
+# Voice of Justice-frontend

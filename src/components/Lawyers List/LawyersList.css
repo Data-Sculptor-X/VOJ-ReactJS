@@ -1,0 +1,85 @@
+.hero {
+    background-color: #ff0000;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .hero__title {
+    color: #fc0000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    z-index: 1;
+  }
+  
+  .square {
+    position: absolute;
+    top: 80vh;
+    left: 45vw;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    transform-origin: top left;
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    animation: square 12s ease-in forwards infinite;
+  }
+  
+  .square:nth-child(2n) {
+    background-color: #ff4502;
+  }
+  
+  .square:nth-child(2) {
+    animation-delay: 2s;
+    left: 25vw;
+    top: 40vh;
+  }
+  
+  .square:nth-child(3) {
+    animation-delay: 4s;
+    left: 75vw;
+    top: 50vh;
+  }
+  
+  .square:nth-child(4) {
+    animation-delay: 6s;
+    left: 90vw;
+    top: 10vh;
+  }
+  
+  .square:nth-child(5) {
+    animation-delay: 8s;
+    left: 10vw;
+    top: 85vh;
+  }
+  
+  .square:nth-child(6) {
+    animation-delay: 10s;
+    left: 50vw;
+    top: 10vh;
+  }
+  
+  @keyframes square {
+    from {
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
+    }
+    to {
+      transform: scale(20) rotate(960deg) translate(-50%, -50%);
+      opacity: 0;
+    }
+  }
+  
+  .animatedBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh; /* Add this line */
+    z-index: -1;
+    background-color: #fc0000;
+  }
+  
+  

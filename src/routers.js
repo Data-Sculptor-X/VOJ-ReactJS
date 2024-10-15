@@ -24,7 +24,14 @@ import Typography from "views/pages/components/Typography.js";
 import Validation from "views/pages/forms/Validation.js";
 import Vector from "views/pages/maps/Vector.js";
 import Widgets from "views/pages/Widgets.js";
-import Homepage from "components/Homepage/home";
+import Homepage from "components/Chatpage/chat";
+import IndianLaws from "components/Indian Laws/IndianLaws";
+import News from "components/Law News/LawNews";
+import LawyersDisplay from "components/Lawyers List/Lawyerslist";
+import { ForgotPassword } from "store/actions/General/authActions";
+import VerifyUserEmail from "components/Verify Email/VerifyEmail";
+
+
 const template = [
   {
     collapse: true,
@@ -70,10 +77,24 @@ const template = [
         layout: "/auth",
       },
       {
+        path: "/userforgotpassword",
+        name: "Forgot Password",
+        miniName: "L",
+        component: <ForgotPassword />,
+        layout: "/auth",
+      },
+      {
+        path: "/verifyEmail",
+        name: "Verify Email",
+        miniName: "VE",
+        component: <VerifyUserEmail />,
+        layout: "/auth",
+      },
+      {
         path: "/home",
         name: "Homepage",
         miniName: "H",
-        component: <Homepage/>,
+        component: <Homepage />,
         layout: "/auth",
       },
       {
@@ -417,42 +438,33 @@ const template = [
 //     layout: "/MasterAdmin",
 //   },
 // ];
-const VOJ = [ {
-      collapse: true,
-      name: "Chats",
-      icon: "ni ni-collection text-green",
-      state: "donCollapse",
-      views: [],
-    },
+const VOJ = [
   {
-    path: "/Dashboard",
-    name: "Dashboard",
-    icon: "ni ni-chart-pie-35 text-info",
-    component: <Dashboard />,
+    collapse: true,
+    name: "Chats",
+    icon: "fa-solid fa-comments text-red",
+    state: "donCollapse",
+    views: [],
+  },
+  {
+    path: "/IndianLaws",
+    name: "Indian Lawbook",
+    icon: "ni ni-book-bookmark text-red",
+    component: <IndianLaws />,
     layout: "/voj",
   },
   {
-    path: "/timetable",
-    name: "Time Table",
-    icon: "ni ni-chart-pie-35 text-info",
+    path: "/lawnews",
+    name: "Indian Law News",
+    icon: "fa-solid fa-newspaper text-red",
+    component: <News />,
     layout: "/voj",
   },
   {
-    path: "/marks",
-    name: "Marks",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
-  },
-  {
-    path: "/events",
-    name: "Events",
-    icon: "ni ni-chart-pie-35 text-info",
-    layout: "/voj",
-  },
-  {
-    path: "/Fees",
-    name: "Fees",
-    icon: "ni ni-chart-pie-35 text-info",
+    path: "/lawyers",
+    name: "Contact Lawyers",
+    icon: "fa-solid fa-gavel text-red",
+    component:<LawyersDisplay/>,
     layout: "/voj",
   },
 ];

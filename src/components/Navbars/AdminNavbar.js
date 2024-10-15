@@ -1,25 +1,14 @@
-/*!
-
-=========================================================
-* Argon Dashboard PRO React - v1.2.5
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-react
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // reactstrap components
+import { useNavigate } from "react-router-dom";
+
+import User from "assets/user.svg";
+
 import {
   Collapse,
   DropdownMenu,
@@ -44,8 +33,31 @@ import {
   Col,
 } from "reactstrap";
 
+import { UserProfile } from "store/actions/General/authActions";
+
 function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
-  // function that on mobile devices makes the search open
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const [name, setName] = useState("");
+  const [profile_picture, setPFP] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await dispatch(UserProfile());
+        setName(data.name);
+        setPFP(data.profile_picture);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   const openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
     setTimeout(function () {
@@ -76,10 +88,11 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
     <>
       <Navbar
         className={classnames(
-          "navbar-top navbar-expand border-bottom",
-          { "navbar-dark bg-info": theme === "dark" },
-          { "navbar-light bg-secondary": theme === "light" }
+          "navbar-top navbar-expand border-bottom"
+          // { "navbar-dark bg-info": theme === "dark" },
+          // { "navbar-light bg-secondary": theme === "light" }
         )}
+        style={{ backgroundColor: "#ff4d6d" }}
       >
         <Container fluid>
           <Collapse navbar isOpen={true}>
@@ -134,7 +147,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </NavItem>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-bell-55" />
+                  <i className="ni ni-bell-55" style={{ color: "white" }} />
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-xl py-0 overflow-hidden"
@@ -159,13 +172,23 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-1.jpg")}
+                            src={
+                              profile_picture ||
+                              profile_picture ||
+                              "https://th.bing.com/th/id/OIP.fqSvfYQB0rQ-6EG_oqvonQHaHa?rs=1&pid=ImgDetMain"
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">John Snow</h4>
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
+                                <h4 className="mb-0 text-sm">
+                                  {name || "No Name"}
+                                </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -188,7 +211,9 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-2.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
@@ -217,13 +242,25 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-3.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">John Snow</h4>
+                              <h4 className="mb-0 text-sm">
+                                <div>
+                                  {loading ? (
+                                    <h4 className="mb-0 text-sm">Loading...</h4>
+                                  ) : (
+                                    <h4 className="mb-0 text-sm">
+                                      {name || "No Name"}
+                                    </h4>
+                                  )}
+                                </div>
+                              </h4>
                             </div>
                             <div className="text-right text-muted">
                               <small>5 hrs ago</small>
@@ -246,13 +283,21 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-4.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">John Snow</h4>
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
+                                <h4 className="mb-0 text-sm">
+                                  {name || "No Name"}
+                                </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>2 hrs ago</small>
@@ -275,13 +320,21 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                           <img
                             alt="..."
                             className="avatar rounded-circle"
-                            src={require("assets/img/theme/team-5.jpg")}
+                            src={
+                              profile_picture === null ? User : profile_picture
+                            }
                           />
                         </Col>
                         <div className="col ml--2">
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
-                              <h4 className="mb-0 text-sm">John Snow</h4>
+                              {loading ? (
+                                <h4 className="mb-0 text-sm">Loading...</h4>
+                              ) : (
+                                <h4 className="mb-0 text-sm">
+                                  {name || "No Name"}
+                                </h4>
+                              )}
                             </div>
                             <div className="text-right text-muted">
                               <small>3 hrs ago</small>
@@ -306,7 +359,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="nav-link" color="" tag="a">
-                  <i className="ni ni-ungroup" />
+                  <i className="ni ni-ungroup" style={{ color: "white" }} />
                 </DropdownToggle>
                 <DropdownMenu
                   className="dropdown-menu-lg dropdown-menu-dark bg-default"
@@ -395,13 +448,23 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <Media className="align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
                       <img
-                        alt="..."
-                        src={require("assets/img/theme/team-4.jpg")}
+                        src={profile_picture === null ? User : profile_picture}
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm font-weight-bold">
-                        John Snow
+                      <span
+                        className="mb-0 text-sm font-weight-bold"
+                        style={{ color: "white" }}
+                      >
+                        <div>
+                          {loading ? (
+                            <h4 className="mb-0 text-sm">Loading...</h4>
+                          ) : (
+                            <h4 className="mb-0 text-sm">
+                              {name || "No Name"}
+                            </h4>
+                          )}
+                        </div>
                       </span>
                     </Media>
                   </Media>
@@ -441,7 +504,10 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                   <DropdownItem divider />
                   <DropdownItem
                     href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/login");
+                    }}
                   >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
@@ -458,7 +524,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
 
 AdminNavbar.defaultProps = {
   toggleSidenav: () => {},
-  sidenavOpen: false,
+  sidenavOpen: true,
   theme: "dark",
 };
 AdminNavbar.propTypes = {

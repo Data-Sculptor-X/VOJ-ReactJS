@@ -1,56 +1,62 @@
-import React from "react";
-import { userLogin } from "store/actions/General/authActions";
+import React, { useState } from "react";
+import { userLogin, UserGoogleLogin } from "store/actions/General/authActions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import logo from "assets/logo.png";
+import { Link } from "react-router-dom";
+import { RevolvingDot } from "react-loader-spinner";
+
 function Login(props) {
-  const dispatch =useDispatch()
-  const [state, setState] = React.useState({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [state, setState] = useState({
     username: "",
     password: "",
+    loading: false, // State to manage loading
   });
+
   const handleChange = (evt) => {
-    const value = evt.target.value;
+    const { name, value } = evt.target;
     setState({
       ...state,
-      [evt.target.name]: value,
+      [name]: value,
     });
   };
 
-  const handleOnSubmit = (evt) => {
+  const handleOnLoginSubmit = async (evt) => {
     evt.preventDefault();
     const { username, password } = state;
-    dispatch(userLogin({
-      username:username,
-      password:password
-    }))
-    for (const key in state) {
+    setState({ ...state, loading: true }); // Set loading to true when login is initiated
+    try {
+      await dispatch(userLogin({ username, password }, navigate));
       setState({
-        ...state,
-        [key]: "",
+        username: "",
+        password: "",
+        loading: false, // Set loading to false when login is completed
       });
+    } catch (error) {
+      setState({ ...state, loading: false }); // Set loading to false if there is an error
+      console.error("Error occurred during login:", error);
     }
   };
 
   return (
     <div className="form-containers sign-up-containers ">
       <div>
-        <img
-          src="https://th.bing.com/th/id/OIP.KKdBKvtS7xwDHAdBAVOwkQAAAA?rs=1&pid=ImgDetMain"
-          height={100}
-          className="mt-3"
-        />
-        <h1>Voice of Justice</h1>
-        <h4>Your Pocket Lawyer</h4>
+        <img src={logo} height={100} className="mt-3" alt="Logo" />
+        <h3>Voice of Justice</h3>
+        <p>Your Pocket Lawyer</p>
       </div>
-      <form onSubmit={handleOnSubmit} className="loginform  my-4">
-        <h1>Login</h1>
-
+      <form onSubmit={handleOnLoginSubmit} className="loginform my-2">
+        <h2>Login</h2>
         <input
-          type="username"
+          type="text"
           placeholder="Username"
           name="username"
           value={state.username}
           onChange={handleChange}
-          className="logininput"
+          className="logininput mb-2"
         />
         <input
           type="password"
@@ -58,17 +64,43 @@ function Login(props) {
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
-          className="logininput"
+          className="logininput mb-2"
         />
-        <div className="d-flex justify-content-between w-100">
-          <a className="font-weight-bold text-dark  d-flex align-items-center">
-            Forgot Password ?
-          </a>
-          <button  className="loginButton">Sign In</button>
+        <Link
+          to="/login/userforgotpassword"
+          className="font-weight-bold text-dark d-block mb-2"
+        >
+          Forgot Password ?
+        </Link>
+        {state.loading ? (
+          <div className="text-center">
+            <RevolvingDot type="ThreeDots" color="#00BFFF" height={80} width={80} />
+            <p className="mt-2">Logging in...</p>
+          </div>
+        ) : (
+          <button type="submit" className="loginButton mb-2">
+            Sign In
+          </button>
+        )}
+
+        <p className="font-weight-bold text-dark text-center mb-2">or</p>
+        <div className="d-flex justify-content-center">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              dispatch(
+                UserGoogleLogin(credentialResponse.credential, navigate)
+              );
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+            width="100%"
+          />
         </div>
       </form>
-      <div className=" text-muted d-flex justify-content-center my-3">
-        Copyright © {new Date().getFullYear()} iComply Lifescience Solutions
+      <div className="text-muted text-center mt-2">
+        Copyright © {new Date().getFullYear()} Voice of Justice
       </div>
     </div>
   );

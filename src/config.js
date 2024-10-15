@@ -2,14 +2,14 @@ import axios from "axios";
 
 function setupAuthorizationInterceptorLocal(instance) {
   instance.interceptors.request.use(function (config) {
-    const token = localStorage.access_token || sessionStorage.access_token;
-    config.headers.Authorization = token ? `Bearer ${token}` : "";
+    const token = sessionStorage.getItem('access_token');
+    config.headers.Authorization = token ? `JWT ${token}` : "";
     return config;
   });
 }
 
-export const donHttps = axios.create({
-  baseURL: process.env.REACT_APP_DON_BACK,
+export const Interceptor = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND
 });
 
-setupAuthorizationInterceptorLocal(donHttps); // Setup interceptor
+setupAuthorizationInterceptorLocal(Interceptor); // Setup interceptor

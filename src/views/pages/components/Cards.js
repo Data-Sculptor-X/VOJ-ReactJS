@@ -211,7 +211,7 @@ function Cards() {
                   <div className="col ml--2">
                     <h4 className="mb-0">
                       <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                        John Snow
+                        Don Brightson
                       </a>
                     </h4>
                     <p className="text-sm text-muted mb-0">Working remoteley</p>
@@ -286,7 +286,7 @@ function Cards() {
                   Get started with Argon
                 </CardTitle>
                 <small className="text-muted">
-                  by John Snow on Oct 29th at 10:23 AM
+                  by Don Brightson on Oct 29th at 10:23 AM
                 </small>
                 <CardText className="mt-4">
                   Argon is a great free UI package based on Bootstrap 4 that

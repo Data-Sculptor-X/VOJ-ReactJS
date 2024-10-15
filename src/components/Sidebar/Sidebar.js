@@ -1,5 +1,4 @@
 import React from "react";
-
 // react library for routing
 import { useLocation, NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library that concatenates classes
@@ -17,6 +16,7 @@ import {
   NavLink,
   Nav,
 } from "reactstrap";
+import Logo from "assets/logo.png";
 
 function Sidebar({
   toggleSidenav,
@@ -26,7 +26,6 @@ function Sidebar({
   rtlActive,
   auth,
 }) {
-  console.log(auth);
   const [state, setState] = React.useState({});
   const location = useLocation();
   React.useEffect(() => {
@@ -170,12 +169,11 @@ function Sidebar({
     <div className="scrollbar-inner">
       <div className="sidenav-header d-flex align-items-center">
         <NavbarBrand
-          // {...navbarBrandProps}
           style={{
-            fontFamily: "Alice, serif",
-            fontSize: "45px",
+            fontFamily: "montserrat",
+            fontSize: "18px",
             fontWeight: "900",
-            color: "rgba(101, 11, 150, 1)",
+            color: "red",
             textTransform: "none",
             fontStyle: "normal",
             textDecoration: "none",
@@ -183,7 +181,8 @@ function Sidebar({
             letterSpacing: "0px",
           }}
         >
-          iShala
+          <img src={Logo} alt="Logo" style={{width: 'auto', height: 'auto',marginRight: "3px" }} />
+          Voice of Justice
         </NavbarBrand>
 
         <div className="ml-auto ">
