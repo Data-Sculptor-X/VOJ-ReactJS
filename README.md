@@ -37,7 +37,7 @@ By sponsoring this project, you'll be helping us keep this service free for clie
 
 If you’d like to contribute financially, please consider becoming a sponsor. Your support means the world to us! 🌟
 
-[Become a Sponsor](#)
+[Become a Sponsor](https://github.com/sponsors/Dbrightson)
 
 ## Contribution Guidelines 💡
 
