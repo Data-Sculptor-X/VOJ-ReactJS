@@ -29,6 +29,16 @@ Our platform is built using the following technologies:
 - CSS
 - SCSS
 
+## 💖 Sponsorship
+
+We welcome contributions to the **Voice of Justice** platform, not just through code but also through your generous donations. Your support helps us maintain and improve the platform, ensuring our chatbot continues to run smoothly and provide free, high-quality legal assistance to those who need it.
+
+By sponsoring this project, you'll be helping us keep this service free for clients and make legal guidance more accessible to everyone. Every contribution, big or small, makes a difference! 🙏
+
+If you’d like to contribute financially, please consider becoming a sponsor. Your support means the world to us! 🌟
+
+[Become a Sponsor](#)
+
 ## Contribution Guidelines 💡
 
 We welcome contributions to the Voice of Justice (VOJ) project! If you would like to help improve the platform, please follow these guidelines:
