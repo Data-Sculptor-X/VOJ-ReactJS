@@ -39,21 +39,50 @@
 
 .loginform {
   background-color: #ffffff;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
   text-align: center;
+  border-radius: 10px; /* Added for rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
 }
 
 .logininput {
   background-color: #eee;
-  border: none;
+  border: 1px solid #ccc; /* Add a light gray border */
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  border-radius: 5px; /* Added rounded corners */
+  transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s; /* Smooth transition for background, shadow, and border */
+  padding-left: 40px; /* Add padding to the left for the icon */
+}
+
+/* Focus effect */
+.logininput:focus {
+  background-color: #fff; /* Change background on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Add shadow on focus */
+  border: 1px solid #007bff; /* Change border color on focus */
+}
+
+/* Hover effect */
+.logininput:hover {
+  background-color: #f0f0f0; /* Slightly darker background on hover */
+}
+
+/* Placeholder styling */
+.logininput::placeholder {
+  color: #aaa; /* Placeholder color */
+  opacity: 1; /* Ensure placeholder is fully visible */
+  transition: color 0.3s; /* Smooth transition for placeholder color */
+}
+
+/* Change placeholder color on focus */
+.logininput:focus::placeholder {
+  color: #007bff; /* Change placeholder color on focus */
 }
 
 .containers {
@@ -198,7 +227,7 @@
   margin-top: 24px;
   padding: 10px 20px; /* Adjust padding as needed */
   border: none;
-  border-radius: 5px;
+  border-radius: 5px; /* Added rounded corners */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -207,7 +236,6 @@
 .signup-right:hover {
   background-color: darkblue; /* Darker color on hover */
 }
-
 
 .googleButton {
   display: flex;
@@ -227,7 +255,6 @@
   z-index: 3;
 }
 
-
 .googleButton:hover {
   background-color: #e7f1ff;
 }
@@ -244,4 +271,21 @@
   align-items: center;
   height: 100%;
   z-index: 10000;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container i {
+  position: absolute;
+  left: 10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa; /* Icon color */
+}
+
+.logininput {
+  padding-left: 40px; /* Add padding to the left for the icon */
 }

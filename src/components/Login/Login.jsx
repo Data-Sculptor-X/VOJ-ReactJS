@@ -42,7 +42,7 @@ function Login(props) {
   };
 
   return (
-    <div className="form-containers sign-up-containers ">
+    <div className="form-containers sign-up-containers">
       <div>
         <img src={logo} height={100} className="mt-3" alt="Logo" />
         <h3>Voice of Justice</h3>
@@ -50,27 +50,33 @@ function Login(props) {
       </div>
       <form onSubmit={handleOnLoginSubmit} className="loginform my-2">
         <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={state.username}
-          onChange={handleChange}
-          className="logininput mb-2"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={state.password}
-          onChange={handleChange}
-          className="logininput mb-2"
-        />
+        <div className="input-container">
+          <i className="fas fa-user"></i>
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={state.username}
+            onChange={handleChange}
+            className="logininput mb-2"
+          />
+        </div>
+        <div className="input-container">
+          <i className="fas fa-lock"></i>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={state.password}
+            onChange={handleChange}
+            className="logininput mb-2"
+          />
+        </div>
         <Link
           to="/login/userforgotpassword"
           className="font-weight-bold text-dark d-block mb-2"
         >
-          Forgot Password ?
+          Forgot Password?
         </Link>
         {state.loading ? (
           <div className="text-center">

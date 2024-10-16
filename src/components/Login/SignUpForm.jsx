@@ -69,7 +69,7 @@ function SignUpForm() {
   };
 
   return (
-    <div className="form-containers sign-in-containers ">
+    <div className="form-containers sign-in-containers">
       <div>
         <img src={logo} height={80} className="mt-3" alt="Logo" />
         <h4>Voice of Justice</h4>
@@ -77,39 +77,51 @@ function SignUpForm() {
       </div>
       <form onSubmit={handleOnSubmit} className="loginform my-2">
         <h3>Sign Up</h3>
-        <input
-          type="text"
-          name="name"
-          value={state.name}
-          onChange={handleChange}
-          className="logininput mb-1"
-          placeholder="Name"
-        />
-        <input
-          type="email"
-          name="email"
-          value={state.email}
-          onChange={handleChange}
-          className="logininput mb-1"
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          value={state.password}
-          onChange={handleChange}
-          className="logininput mb-1"
-          placeholder="Password"
-        />
-        <input
-          type="date"
-          name="dob"
-          value={state.dob}
-          onChange={handleChange}
-          className="logininput mb-1"
-          placeholder="Date of Birth"
-        />
-        <button type="submit" className="loginButton mb-1">
+        <div className="input-container">
+          <i className="fas fa-user"></i>
+          <input
+            type="text"
+            name="name"
+            value={state.name}
+            onChange={handleChange}
+            className="logininput mb-1"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div className="input-container">
+          <i className="fas fa-envelope"></i>
+          <input
+            type="email"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+            className="logininput mb-1"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div className="input-container">
+          <i className="fas fa-lock"></i>
+          <input
+            type="password"
+            name="password"
+            value={state.password}
+            onChange={handleChange}
+            className="logininput mb-1"
+            placeholder="Create a password"
+          />
+        </div>
+        <div className="input-container">
+          <i className="fas fa-calendar-alt"></i>
+          <input
+            type="text"
+            name="dob"
+            value={state.dob}
+            onChange={handleChange}
+            className="logininput mb-1"
+            placeholder="dd-mm-yyyy"
+          />
+        </div>
+        <button type="submit" className="signin-right mb-1">
           Sign Up
         </button>
       </form>
