@@ -5,7 +5,7 @@
 </p>
 
 ## Project Overview 🌟
-Voice of Justice (VOJ) is an AI-assisted legal consultation platform designed to connect individuals who need legal services but cannot afford them with lawyers who offer pro bono work. We are committed to fostering a respectful, inclusive, and collaborative community where contributors work together to enhance this platform for all users.
+Voice of Justice (VOJ) is an AI-assisted legal consultation platform designed to connect individuals who need legal services but cannot afford them with lawyers who offer pro bono work. We are committed to fostering a respectful, inclusive, and collaborative community where contributors work together to enhance this platform for all users. link-www.voiceofjustice.me/login
 
 ## Code of Conduct 📜
 We are committed to fostering a safe and inclusive environment for all users. Please review our [Code of Conduct](Code_Of_Conduct.md) to understand the expected behavior and guidelines while using the Voice of Justice platform.
@@ -66,4 +66,4 @@ We want to extend a heartfelt thank you to all the contributors who have helped 
 
 Whether you have submitted code, reported issues, provided feedback, or helped spread the word, every contribution matters and makes a difference. Together, we are building a platform that can truly impact lives.
 
-We look forward to your continued involvement and support as we grow and improve this project together!
+We look forward to your continued involvement and support as we grow and improve this project together!!
