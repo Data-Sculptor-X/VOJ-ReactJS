@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
@@ -62,21 +62,27 @@ const ChatPage = (props) => {
     setLoading(false);
   }, [props.chat_data]);
 
-  const recognition = new window.webkitSpeechRecognition(); // Initialize SpeechRecognition
-  recognition.lang = "en-US"; // Set language
+  const recognitionRef = useRef(null);
 
   const { speak, cancel } = useSpeechSynthesis(); // useSpeechSynthesis hook
+
+  useEffect(() => {
+    recognitionRef.current = new window.webkitSpeechRecognition();
+    recognitionRef.current.lang = "en-US";
+    recognitionRef.current.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      setInputText(speechToText);
+    };
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
-
-  useEffect(() => {
-    recognition.onresult = (event) => {
-      const speechToText = event.results[0][0].transcript;
-      setInputText(speechToText);
-    };
-  }, [recognition]);
 
   const handleInputSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -109,9 +115,9 @@ const ChatPage = (props) => {
 
   const toggleListening = () => {
     if (!isListening) {
-      recognition.start(); // start listening
+      recognitionRef.current.start(); // start listening
     } else {
-      recognition.stop(); // stop listening
+      recognitionRef.current.stop(); // stop listening
     }
     setIsListening(!isListening);
   };
