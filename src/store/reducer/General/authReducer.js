@@ -10,22 +10,20 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_DETAIL":
-      return { ...state, user_detail: state.data };
+      return { ...state, user_detail: action.data };
     case "SET_SECTION_ID":
-      return { ...state, section_id: state.data };
+      return { ...state, section_id: action.data };
     case "IS_Authenticated":
-      return { ...state, isAuthenticated: state.data };
+      return { ...state, isAuthenticated: action.data };
     case "SET_SECTION_DATA":
       return { ...state, section_data: action.data };
 
     case "SET_CHAT_DATA":
-      console.log(action.data);
       return { ...state, chat_data: action.data };
     case "SET_PROFILE_DATA":
-      console.log("New profile data:", action.payload); // Log the new profile data
       return {
         ...state,
-        profileData: action.payload,
+        profileData: action.data,
       };
     default:
       return state;
